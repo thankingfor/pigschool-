@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 引入文件 -->
+  <script th:src="@{/lib/jquery/jquery-3.2.1.min.js}"></script>
+  <script th:src="@{/lib/bootstrap/bootstrap.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/lib/md-fonts/css/materialdesignicons.min.css}">
+  <link rel="stylesheet" th:href="@{/lib/normalize/normalize.css}">
+  <!-- xyz组件 -->
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/topbar/topbar.css}">
+  <script th:src="@{/lib/xyz_tpl/topbar/topbar.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/top_btn/top_btn.css}">
+  <script th:src="@{/lib/xyz_tpl/top_btn/top_btn.js}"></script>
+  <!-- 私有 -->
+  <link rel="stylesheet" th:href="@{/sm_center_accepter/accepter.css}">
+  <script th:src="@{/sm_center_accepter/accepter.js}"></script>
+  <title>查看需求接受者</title>
+</head>
+
+<body>
+<!-- Topbar -->
+<nav th:replace="header :: copy"></nav>
+<!-- TopBar -->
+
+  <div class="container" id="banner">
+    <img th:src="@{/sm_center_accepter/img/banner.png}" alt="">
+  </div>
+
+  <div id="main" class="container">
+    <!-- 接受者卡片 -->
+    <div class="accepter_card" th:if="${favList.size() > 0}" th:each="fav : ${favList}">
+      <div class="card_title">接受者</div>
+      <div class="row">
+        <div class="accepter_item col-md-6">
+          <div class="key">电话</div>
+          <div class="value">[[${fav.user.phone}]]</div>
+        </div>
+        <div class="accepter_item col-md-6">
+          <div class="key">姓名</div>
+          <div class="value">[[${fav.user.reName}]]</div>
+        </div>
+      </div>
+    </div>
+    <!-- 接受者卡片 -->
+  </div>
+  <div th:if="${favList.size() <= 0}" id="footer">- 无人接受 -</div>
+
+</body>
+
+</html>

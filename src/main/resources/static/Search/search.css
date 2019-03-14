@@ -1,0 +1,203 @@
+body {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+body ul {
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 576px) {
+  body #topbar {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+}
+
+#big_title {
+  margin-bottom: 2rem !important;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
+#big_title .title {
+  font-size: 1.5rem;
+}
+
+#big_title .title span {
+  margin-left: 0.5rem;
+}
+
+#search_list .price_box {
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  border-color: #fec018;
+}
+
+#noFound {
+  display: none;
+  padding-left: 5px;
+  text-align: center;
+  margin: 5rem 0;
+  font-weight: bold;
+}
+
+#noFound .icon {
+  font-size: 5rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+#noFound .title {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.5rem;
+}
+
+#noFound .title span {
+  font-size: 1.1rem;
+  font-weight: 500 !important;
+}
+
+.item_list .row {
+  padding: 0 10px;
+}
+
+.item_list .item {
+  padding: 0 5px;
+}
+
+.item_list .item_innerbox {
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 10px !important;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.item_list .item_innerbox:hover {
+  border-width: 2px;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.item_list .item_innerbox .img_border img {
+  width: 100%;
+}
+
+.item_list .item_innerbox .price_box {
+  margin: 5px;
+  height: 2.5rem;
+  border-radius: 5px;
+  border: solid 2px white;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+@media (max-width: 400px) {
+  .item_list .item_innerbox .price_box .percent {
+    font-size: 1rem !important;
+  }
+  .item_list .item_innerbox .price_box .price .old {
+    font-size: 0.7rem !important;
+  }
+  .item_list .item_innerbox .price_box .price .now {
+    font-size: 1rem !important;
+  }
+}
+
+.item_list .item_innerbox .price_box .percent {
+  float: left;
+  line-height: 2.5rem;
+  width: 40%;
+  text-align: center;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.item_list .item_innerbox .price_box .price {
+  background: white;
+  min-width: 60%;
+  float: right;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.item_list .item_innerbox .price_box .price .old {
+  width: 50%;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: line-through;
+  float: right;
+  text-align: left;
+}
+
+.item_list .item_innerbox .price_box .price .now {
+  width: 50%;
+  font-size: 1.4rem;
+  float: left;
+}
+
+.item_list .item_innerbox .item_title {
+  padding: 0 5px;
+  height: 3rem;
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .item_list .item_innerbox .item_title {
+    font-size: 0.9rem;
+  }
+}
+
+.item_list .item_innerbox .item_title a {
+  text-align: justify;
+  display: block;
+  line-height: 1.5rem;
+}
+
+.item_list .item_innerbox .seller {
+  font-size: 0.9rem;
+  width: 100%;
+  line-height: 2rem;
+  padding: 5px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.item_list .item_innerbox .seller .seller_name {
+  float: left;
+}
+
+.item_list .item_innerbox .seller .seller_name .mdi {
+  margin-right: 5px;
+}
+
+.item_list .item_innerbox .seller .seller_level {
+  float: right;
+}
+
+.item_list .item_innerbox .seller .seller_level span {
+  background-color: #24a647;
+  padding: 2px 5px;
+  color: white;
+  border-radius: 5px;
+}
+
+#big_title_bottom {
+  margin-top: 3rem !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
+  margin: 1rem auto;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+#big_title_bottom .title {
+  font-size: 1.5rem;
+}
+
+#big_title_bottom .title span {
+  margin-left: 1rem;
+}
+/*# sourceMappingURL=search.css.map */

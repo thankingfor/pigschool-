@@ -1,0 +1,60 @@
+body {
+  background-color: #f7f7f7;
+}
+
+#banner img {
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+#main {
+  margin-bottom: 30px;
+}
+
+#main .accepter_card {
+  margin-top: 30px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#main .accepter_card .card_title {
+  font-size: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 4rem;
+}
+
+#main .accepter_card .accepter_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+#main .accepter_card .accepter_item .key {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+#main .accepter_card .accepter_item .value {
+  line-height: 34px;
+}
+
+#footer {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.3);
+}
+/*# sourceMappingURL=accepter.css.map */

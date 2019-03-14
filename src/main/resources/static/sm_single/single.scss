@@ -1,0 +1,20 @@
+#main{
+  margin-top: 20px;
+  .jumbotron{
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    color: white;
+    border-radius: 10px;
+  }
+  .demand{
+    margin-top: 20px;
+    .card-body{
+      .btn{
+        float: right;
+      }
+    }
+  }
+}
+
+#page{
+  margin-top: 30px;
+}

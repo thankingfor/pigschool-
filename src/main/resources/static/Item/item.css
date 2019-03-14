@@ -1,0 +1,336 @@
+body {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+body ul {
+  padding: 0;
+  list-style: none;
+}
+
+#item_info {
+  margin-top: 1rem;
+}
+
+#item_info .area_title .col-12 {
+  background-color: #fec018;
+  height: 80px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#item_info .area_title .col-12 .title {
+  font-size: 2rem;
+  line-height: 80px;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+#item_info .item_cover {
+  position: relative;
+  padding: 0;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  #item_info .item_cover {
+    margin: 0 16px;
+  }
+}
+
+#item_info .item_cover img {
+  width: 100%;
+}
+
+#item_info .item_cover .item_condition_box {
+  width: 0;
+  height: 0;
+  border-bottom: 6rem solid #fec018;
+  border-right: 6rem solid transparent;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+}
+
+#item_info .item_cover .item_condition_box .item_condition {
+  position: absolute;
+  width: 3rem;
+  text-align: center;
+  line-height: 3rem;
+  font-size: 1.4rem;
+  bottom: -5.6rem;
+  left: 0.4rem;
+  color: white;
+}
+
+#item_info .item_detail {
+  border-radius: 5px;
+  padding-right: 0;
+}
+
+@media (max-width: 992px) {
+  #item_info .item_detail {
+    padding-right: 16px !important;
+    margin-top: 16px;
+  }
+}
+
+#item_info .item_detail .item_detail_inner {
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  height: 100%;
+}
+
+#item_info .item_detail label {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+#item_info .item_detail label:first-child {
+  margin-top: 0;
+}
+
+#item_info .item_detail .item_name {
+  text-align: justify;
+  font-weight: bold;
+  color: #000000 !important;
+}
+
+#item_info .item_detail .item_text {
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+
+#item_info .item_detail .old_price {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+#item_info .item_detail .percent {
+  font-size: 1.5rem;
+  background-color: #fec018;
+  width: 6rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  border: 5px solid #f8b705;
+  margin: 5px 0;
+}
+
+#item_info .item_detail .seller span {
+  font-size: 1.3rem;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+#item_info .item_detail .seller .badge {
+  font-size: 1rem;
+}
+
+#item_info .item_detail .btn_box button {
+  width: 100%;
+  height: 50px;
+}
+
+#item_info .item_detail .btn_box button .mdi {
+  margin-left: 10px;
+}
+
+@media (min-width: 1200px) {
+  #item_info .item_detail .btn_box {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 40px;
+  }
+}
+
+#enter_your_info .remind {
+  color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 1rem;
+}
+
+#enter_your_info #your_info_alert {
+  display: none;
+}
+
+#seller_info #seller_contact {
+  margin-top: 1rem;
+}
+
+.alert {
+  position: fixed;
+  z-index: 1000;
+  width: 50%;
+  right: 0;
+  left: 0;
+  bottom: 1rem;
+  margin: auto;
+  text-align: center;
+}
+
+@media (max-width: 990px) {
+  .item_card {
+    padding: 0 16px;
+  }
+}
+
+#item_description {
+  cursor: default;
+}
+
+#item_description .inner {
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem -16px;
+  padding: 0 16px;
+}
+
+@media (max-width: 990px) {
+  #item_description .inner {
+    margin: 1rem 0px;
+    padding: 0;
+  }
+}
+
+#item_description .area_title {
+  text-align: center;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+}
+
+#item_description .area_title .col-12 {
+  background: #fec018;
+}
+
+#item_description .area_title span {
+  margin-left: 10px;
+}
+
+#item_description .description_text .col-12 {
+  background-color: white;
+  font-size: 1rem;
+  text-indent: 2em;
+  padding: 15px;
+  line-height: 2rem;
+}
+
+#center #item_pic {
+  padding: 0;
+  padding-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  #center #item_pic {
+    padding-right: 0;
+  }
+}
+
+#center #item_pic img {
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#center #message_board {
+  padding: 0;
+}
+
+#center #message_board .inner {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#center #message_board .inner .title {
+  cursor: default;
+  background: #fec018;
+  line-height: 4rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#center #message_board .inner #message_box #message_null {
+  line-height: 5rem;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  font-weight: 100;
+  font-style: italic;
+  text-align: center;
+  display: none;
+}
+
+#center #message_board .inner #message_box .message {
+  cursor: default;
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#center #message_board .inner #message_box .message .messager_head {
+  width: 200px;
+  padding-right: 0;
+}
+
+#center #message_board .inner #message_box .message .messager_head img {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#center #message_board .inner #message_box .message .messager_info {
+  text-align: justify;
+  color: rgba(0, 0, 0, 0.6);
+  text-indent: 2em;
+  font-size: 1rem;
+}
+
+#center #message_board .inner #message_box .message .messager_info .messager_name {
+  padding-top: 5px;
+  text-align: right !important;
+  padding-right: 0px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+#center #message_board .inner #leave_msg {
+  padding: 1rem;
+}
+
+#center #message_board .inner #leave_msg #msg_text {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+#center #message_board .inner #leave_msg input {
+  width: 6rem;
+  float: right;
+  margin: 1rem 0;
+  margin-top: 0.5rem;
+}
+/*# sourceMappingURL=item.css.map */

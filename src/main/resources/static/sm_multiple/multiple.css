@@ -1,0 +1,23 @@
+#main {
+  margin-top: 20px;
+}
+
+#main .jumbotron {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#48c6ef), to(#6f86d6));
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  color: white;
+  border-radius: 10px;
+}
+
+#main .demand {
+  margin-top: 20px;
+}
+
+#main .demand .card-body .btn {
+  float: right;
+}
+
+#page {
+  margin-top: 30px;
+}
+/*# sourceMappingURL=multiple.css.map */

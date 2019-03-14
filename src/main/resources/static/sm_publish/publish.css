@@ -1,0 +1,65 @@
+@charset "UTF-8";
+body {
+  font-family: "微软雅黑";
+}
+
+.title {
+  font-size: 2.5rem;
+  color: rgba(0, 0, 0, 0.8);
+  /*border-bottom: 1.5px solid rgba(0,0,0,0.2);*/
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.7);
+  padding-bottom: 1rem;
+  /*border-bottom: 1px solid rgba(0,0,0,0.2);*/
+}
+
+.card {
+  border-top: none;
+  border-radius: 0 0.25rem 0.25rem 0.25rem;
+}
+
+.blockquote p {
+  font-size: 1rem;
+}
+
+/*form标题定位*/
+form {
+  margin-top: 1rem;
+}
+
+form label {
+  margin-left: .2rem;
+}
+
+.form_back_text {
+  padding: 6px;
+  padding-left: 0;
+  margin-left: -.5rem;
+}
+
+/*提交按钮*/
+.fake_submit_box {
+  margin: 1rem 0;
+  padding: 2rem 0;
+  border-top: 1px dashed rgba(0, 0, 0, 0.2);
+  padding-top: 3rem;
+}
+
+.fake_submit {
+  display: block;
+  margin: 0 auto;
+}
+
+/*警告框*/
+#alert_box {
+  position: fixed;
+  bottom: -5rem;
+  width: 100%;
+  text-align: center;
+  line-height: 2rem;
+}
+/*# sourceMappingURL=publish.css.map */

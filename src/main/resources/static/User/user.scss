@@ -1,0 +1,244 @@
+$main: #fec018;
+$shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+// background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+$border: 1px solid rgba(0, 0, 0, 0.1);
+$featured: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+
+// 基础配置
+body {
+  background-color: rgba(0, 0, 0, 0.03);
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  @media (max-width: 576px) {
+    #topbar {
+      box-shadow: none;
+    }
+  }
+}
+
+// 模态框
+#seller_name{
+  span{
+    margin-left: 5px;
+  }
+}
+
+#main_box {
+  box-shadow: $shadow;
+  border-radius: 10px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 2rem;
+  background-color: #fff;
+  @media (max-width: 576px) {
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+  }
+  @media (max-width: 768px) {
+    #pills-tab {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .nav-link {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .nav-item .active {
+    background-color: $main;
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+
+  .tab-pane {
+    border: $border;
+    padding: 1rem;
+    border-radius: 10px;
+    @media (max-width: 576px) {
+      padding: 0;
+      border: none;
+    }
+  }
+
+  // 个人信息
+  #info {
+    label{
+      margin-bottom: 5px;
+    }
+    #user_img_name {
+      .inner {
+        position: relative;
+        margin-bottom: 2rem;
+      }
+      #user_head_preview {
+        width: 100%;
+        border-radius: 10px;
+      }
+      #user_info_name {
+        position: absolute;
+        bottom: 0px;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: 100;
+        @media (max-width: 576px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .file_btn {
+      position: relative;
+      input{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 2;
+        height: 38px;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .btn{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+      }
+    }
+    .btn_box {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem auto;
+      width: 15.6rem;
+      @media (min-width: 1200px) {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  #publish {
+    padding-top: 0rem;
+    padding-bottom: 2.5rem;
+    @media (max-width: 990px) {
+      padding-top: 1rem;
+    }
+  }
+
+  // 物品卡片
+  .item_card {
+    cursor: pointer;
+    position: relative;
+    margin-top: 2rem;
+    @media (max-width: 990px) {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    .row {
+      margin: 0;
+      border: $border;
+      border-radius: 10px;
+      box-shadow: $shadow;
+      overflow: hidden;
+    }
+    .img_box {
+      padding: 0;
+      img {
+        width: 100%;
+      }
+    }
+    .item_info {
+      padding: 1rem;
+      padding-left: 0;
+      position: relative;
+      .title {
+        font-size: 1.2rem;
+        text-align: justify;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.6);
+        @media (max-width: 576px) {
+          font-size: 0.8rem;
+        }
+
+        @media (min-width: 768px) {
+          border-bottom: $border;
+          padding-bottom: 3rem;
+        }
+        @media (min-width: 990px) {
+          border-bottom: none;
+        }
+        @media (min-width: 1200px) {
+          border-bottom: $border;
+          padding-bottom: 1.5rem;
+        }
+      }
+      .price_box {
+        position: absolute;
+        bottom: 2rem;
+        .price_inner {
+          float: left;
+          margin-right: 1rem;
+          .title {
+            font-size: 1rem;
+            border-bottom: none !important;
+          }
+        }
+        @media (max-width: 576px) {
+          bottom: 1.9rem;
+          font-size: 0.9rem;
+          .title {
+            font-size: 0.9rem !important;
+          }
+        }
+      }
+    }
+    .btn_box {
+      position: absolute;
+      bottom: -23px;
+      right: 1rem;
+      width: 9rem;
+      @media (max-width: 576px) {
+        bottom: -18px;
+        right: 0rem;
+      }
+      .button {
+        float: left;
+        font-size: 1.5rem;
+        width: 3rem;
+        line-height: 3rem;
+        text-align: center;
+        border-radius: 10rem;
+        margin-left: 1rem;
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        @media (max-width: 576px) {
+          font-size: 1.3rem;
+          width: 2.5rem;
+          line-height: 2.5rem;
+        }
+      }
+    }
+  }
+
+  #want {
+    padding-top: 0rem;
+    padding-bottom: 2.5rem;
+    @media (max-width: 990px) {
+      padding-top: 1rem;
+    }
+  }
+}
+
+#tag {
+  margin: 2rem auto;
+  width: 20rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.2);
+}

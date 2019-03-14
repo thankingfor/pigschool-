@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Topbar -->
+<nav id="topbar" class="navbar navbar-expand-lg navbar-light bg-warning nav-shadow" th:fragment="copy">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar_toggler_title">菜单</span>
+    </button>
+    <button class="navbar-toggler home_btn" type="button">
+        <span class="mdi mdi-home"></span>
+        <span class="navbar_toggler_title">主页</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span class="mdi mdi-near-me d-none d-sm-block"></span>板块导航
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/sm/publish">发布需求</a>
+                    <a class="dropdown-item" href="/sm">供给市场</a>
+                    <a class="dropdown-item" href="/index">二手市场</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/index">首 页</a>
+                </div>
+            </li>
+        </ul>
+        <div class="title d-none d-md-block">
+            校园猪&nbsp;|&nbsp;
+            <span class="school_name">安工</span>
+        </div>
+
+        <a class="nav_btn">
+            <span class="mdi mdi-apple-keyboard-caps"></span> 商品发布
+        </a>
+        <a class="nav_btn">
+            <span class="mdi mdi-check-all"></span> 商品想要
+        </a>
+        <a class="nav_btn">
+            <span class="mdi mdi-folder-star"></span> 商品收藏
+        </a>
+
+        <div id="user_list">
+            <a id="user_name">
+                <span class="name">[[${session.user.reName}]]</span>
+                <img id="user_head" th:src="${session.user.icon}" th:if="${session.user.icon!=null}" alt="">
+                <img id="user_head" th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(session.user.icon) || session.user.icon==null}" alt="">
+                <!--<span class="badge badge-pill badge-primary">8</span>-->
+            </a>
+
+            <div id="user_info">
+                <ul>
+                    <!--<li class="user_list_btn">
+                        <a>用户消息</a>
+                        <span id="user_msg" class="badge badge-warning">4</span>
+                    </li>
+                    <li class="user_list_btn">
+                        <a>系统通知</a>
+                        <span id="sys_msg" class="badge badge-warning">4</span>
+                    </li>-->
+                    <li class="user_list_btn">
+                        <a href="/login/logout">注销</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- TopBar -->
+</body>
+</html>

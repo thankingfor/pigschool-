@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pigschool.xyzshow.mapper.XyzItemMapper" >
+  <resultMap id="BaseResultMap" type="com.pigschool.xyzshow.model.XyzItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="oldprice" property="oldprice" jdbcType="BIGINT" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="sell_point" property="sellPoint" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="is_bargain" property="isBargain" jdbcType="INTEGER" />
+    <result column="assay" property="assay" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="contact_way" property="contactWay" jdbcType="INTEGER" />
+    <result column="contact_info" property="contactInfo" jdbcType="VARCHAR" />
+    <result column="dealway" property="dealway" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, oldprice, price, sell_point, photo, num, image, cid, state, created, updated, 
+    is_bargain, assay, location, contact_way, contact_info, dealway, uid, nick
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pigschool.xyzshow.model.XyzItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xyz_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from xyz_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xyz_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pigschool.xyzshow.model.XyzItemExample" >
+    delete from xyz_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pigschool.xyzshow.model.XyzItem" >
+    insert into xyz_item (id, title, oldprice, 
+      price, sell_point, photo, 
+      num, image, cid, state, 
+      created, updated, is_bargain, 
+      assay, location, contact_way, 
+      contact_info, dealway, uid, 
+      nick)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{oldprice,jdbcType=BIGINT}, 
+      #{price,jdbcType=BIGINT}, #{sellPoint,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{cid,jdbcType=BIGINT}, #{state,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{isBargain,jdbcType=INTEGER}, 
+      #{assay,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{contactWay,jdbcType=INTEGER}, 
+      #{contactInfo,jdbcType=VARCHAR}, #{dealway,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, 
+      #{nick,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pigschool.xyzshow.model.XyzItem" >
+    insert into xyz_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="oldprice != null" >
+        oldprice,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="sellPoint != null" >
+        sell_point,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="isBargain != null" >
+        is_bargain,
+      </if>
+      <if test="assay != null" >
+        assay,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="contactWay != null" >
+        contact_way,
+      </if>
+      <if test="contactInfo != null" >
+        contact_info,
+      </if>
+      <if test="dealway != null" >
+        dealway,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="nick != null" >
+        nick,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="oldprice != null" >
+        #{oldprice,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="sellPoint != null" >
+        #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isBargain != null" >
+        #{isBargain,jdbcType=INTEGER},
+      </if>
+      <if test="assay != null" >
+        #{assay,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        #{contactWay,jdbcType=INTEGER},
+      </if>
+      <if test="contactInfo != null" >
+        #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealway != null" >
+        #{dealway,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="nick != null" >
+        #{nick,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pigschool.xyzshow.model.XyzItemExample" resultType="java.lang.Integer" >
+    select count(*) from xyz_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update xyz_item
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldprice != null" >
+        oldprice = #{record.oldprice,jdbcType=BIGINT},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.sellPoint != null" >
+        sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=BIGINT},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isBargain != null" >
+        is_bargain = #{record.isBargain,jdbcType=INTEGER},
+      </if>
+      <if test="record.assay != null" >
+        assay = #{record.assay,jdbcType=INTEGER},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactWay != null" >
+        contact_way = #{record.contactWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactInfo != null" >
+        contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealway != null" >
+        dealway = #{record.dealway,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.nick != null" >
+        nick = #{record.nick,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update xyz_item
+    set id = #{record.id,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      oldprice = #{record.oldprice,jdbcType=BIGINT},
+      price = #{record.price,jdbcType=BIGINT},
+      sell_point = #{record.sellPoint,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR},
+      cid = #{record.cid,jdbcType=BIGINT},
+      state = #{record.state,jdbcType=INTEGER},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP},
+      is_bargain = #{record.isBargain,jdbcType=INTEGER},
+      assay = #{record.assay,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      contact_way = #{record.contactWay,jdbcType=INTEGER},
+      contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      dealway = #{record.dealway,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=BIGINT},
+      nick = #{record.nick,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pigschool.xyzshow.model.XyzItem" >
+    update xyz_item
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="oldprice != null" >
+        oldprice = #{oldprice,jdbcType=BIGINT},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="sellPoint != null" >
+        sell_point = #{sellPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isBargain != null" >
+        is_bargain = #{isBargain,jdbcType=INTEGER},
+      </if>
+      <if test="assay != null" >
+        assay = #{assay,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        contact_way = #{contactWay,jdbcType=INTEGER},
+      </if>
+      <if test="contactInfo != null" >
+        contact_info = #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealway != null" >
+        dealway = #{dealway,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="nick != null" >
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pigschool.xyzshow.model.XyzItem" >
+    update xyz_item
+    set title = #{title,jdbcType=VARCHAR},
+      oldprice = #{oldprice,jdbcType=BIGINT},
+      price = #{price,jdbcType=BIGINT},
+      sell_point = #{sellPoint,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=BIGINT},
+      state = #{state,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      is_bargain = #{isBargain,jdbcType=INTEGER},
+      assay = #{assay,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      contact_way = #{contactWay,jdbcType=INTEGER},
+      contact_info = #{contactInfo,jdbcType=VARCHAR},
+      dealway = #{dealway,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=BIGINT},
+      nick = #{nick,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

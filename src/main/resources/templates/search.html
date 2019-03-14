@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- jquery -->
+  <script th:src="@{/lib/jquery/jquery-3.2.1.min.js}" type="text/javascript"></script>
+  <!-- bootstrap -->
+  <script th:src="@{/lib/bootstrap/bootstrap.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/bootstrap/bootstrap.min.css}">
+
+  <!-- md icon -->
+  <link rel="stylesheet" th:href="@{/lib/md-fonts/css/materialdesignicons.min.css}">
+  <!-- xyz -->
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/topbar/topbar.css}">
+  <script th:src="@{/lib/xyz_tpl/topbar/topbar.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/top_btn/top_btn.css}">
+  <script th:src="@{/lib/xyz_tpl/top_btn/top_btn.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/footer/footer.css}">
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/search_bar/search_bar.css}">
+  <script th:src="@{/lib/xyz_tpl/search_bar/search_bar.js}"></script>
+  <!-- self -->
+  <link rel="stylesheet" th:href="@{/Search/search.css}">
+  <script th:src="@{/Search/search.js}" type="text/javascript"></script>
+  <title>搜索</title>
+  <script th:inline="javascript">
+      var itemid = /*[[${session.user.id}]]*/
+  </script>
+</head>
+
+<body>
+
+<!-- Topbar -->
+<nav th:replace="header :: copy"></nav>
+<!-- TopBar -->
+
+  <!-- 搜索框 -->
+  <div id="search_box">
+    <div id="index_subtitle">二手物品发布 & 交易市场</div>
+    <button id="publish" class="btn btn-outline-light" type="button">
+      <img src="" alt="">
+      <a href="/publish">发布物品</a>
+    </button>
+    <form id="search" class="container" action="">
+      <div class="input-group">
+        <input id="search_input" type="text" class="form-control" placeholder="搜索你想要的东西" aria-label="Search what you want"
+          aria-describedby="basic-addon2" th:value="${param.param}">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button">
+            搜索
+            <span class="mdi mdi-magnify"></span>
+          </button>
+        </div>
+      </div>
+      <div id="associative_box" class="row col-12 col-sm-6 mt-2">
+        <ul id="associative_list"></ul>
+      </div>
+    </form>
+  </div>
+  <!-- 搜索框 -->
+
+
+  <!-- 标题 -->
+  <div id="big_title" class="container">
+    <div class="row">
+      <div class="col-12 title">搜索结果<span class="mdi mdi-cloud-search-outline"></span></div>
+    </div>
+  </div>
+
+  <!-- 搜索列表 -->
+  <div id="search_list" class="container">
+
+    <div class="item_list">
+      <div class="row">
+        <div id="noFound" class="col-12">
+          <div class="icon"><span class="mdi mdi-cloud-question"></span></div>
+          <div class="title">
+            Emmmmm 抱歉 ......
+            <br>
+            <span>目前还没有人发布您想要搜索的商品</span>
+          </div>
+        </div>
+
+        <!-- 商品模板 -->
+        <div class="item col-6 col-lg-3" th:each=" item : ${ItemList}" >
+          <div class="item_innerbox" th:onclick="'javascript:item_click('+${item.id}+')'">
+            <div class="img_border">
+              <img th:src="${item.photo}" th:if="${item.photo!=null}" alt="">
+              <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(item.photo) || item.photo==null}" alt="">
+            </div>
+            <div class="price_box clearfix">
+              <div class="percent"></div>
+              <div class="price clearfix">
+                <div class="now">￥[[${item.price}]]</div>
+                <div class="old">￥[[${item.oldprice}]]</div>
+              </div>
+            </div>
+            <div class="item_title">
+              <a th:text="${item.title}">帽子，加绒，原价99，现在只需10元aaaaaa！</a>
+            </div>
+            <div class="seller clearfix">
+              <div class="seller_name">
+                <span class="mdi mdi-account-box"></span>[[${item.nick}]]
+              </div>
+              <div class="seller_level">信誉等级：<span>极好</span></div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--<div class="item col-6 col-lg-3">
+          <div class="item_innerbox">
+            <div class="img_border">
+              <img th:src="@{/Data/SecondHand/Item/1001/cover}" alt="">
+            </div>
+            <div class="price_box clearfix">
+              <div class="percent"></div>
+              <div class="price clearfix">
+                <div class="now">￥9.8</div>
+                <div class="old">￥18</div>
+              </div>
+            </div>
+            <div class="item_title">
+              <a>帽子，加绒，原价99，现在只需10元aaaaaa！</a>
+            </div>
+            <div class="seller clearfix">
+              <div class="seller_name">
+                <span class="mdi mdi-account-box"></span>张*犬
+              </div>
+              <div class="seller_level">信誉等级：<span>极好</span></div>
+            </div>
+          </div>
+        </div>-->
+        <!-- --------- -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 标题 -->
+  <div id="big_title_bottom" class="container">
+    <div class="row">
+      <div class="col-12 title">什么都没有了哦<span class="mdi mdi-playlist-check"></span></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

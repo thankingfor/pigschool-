@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 引入文件 -->
+  <script th:src="@{/lib/jquery/jquery-3.2.1.min.js}" ></script>
+  <script th:src="@{/lib/bootstrap/bootstrap.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/lib/md-fonts/css/materialdesignicons.min.css}">
+  <link rel="stylesheet" th:href="@{/lib/normalize/normalize.css}">
+  <!-- xyz组件 -->
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/topbar/topbar.css}">
+  <script th:src="@{/lib/xyz_tpl/topbar/topbar.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/top_btn/top_btn.css}">
+  <script th:src="@{/lib/xyz_tpl/top_btn/top_btn.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/footer/footer.css}">
+  <!-- 私有 -->
+  <link rel="stylesheet" th:href="@{/Item/item.css}">
+  <script th:src="@{/Item/item.js}"></script>
+  <title>商品详情</title>
+  <script th:inline="javascript">
+      var itemid = /*[[${session.user.id}]]*/
+      var userid = /*[[${session.user.id}]]*/
+      var old_price = /*[[${item.oldprice}]]*/
+      var price = /*[[${item.price}]]*/
+      var itemID = /*[[${item.id}]]*/
+      var IdFavorite = /*[[${IdFavorite}]]*/
+      var percent = /*[[${item.getBaiFenBi()}]]*/
+  </script>
+</head>
+
+<body>
+<!-- Topbar -->
+<nav th:replace="header :: copy"></nav>
+<!-- TopBar -->
+
+
+  <!-- 商品信息 -->
+ <div id="item_info" class="container">
+   <div class="row">
+     <div class="item_cover col-lg-6">
+       <img th:src="${item.photo}" th:if="${item.photo!=null}" alt="">
+       <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(item.photo) || item.photo==null}" alt="">
+       <div class="item_condition_box">
+         <div class="item_condition">[[${item.assay}]]新</div>
+       </div>
+     </div>
+     <div class="item_detail col-lg-6">
+       <div class="item_detail_inner">
+         <label>商品名称：</label>
+         <div class="item_name item_text">
+           [[${item.title}]]
+         </div>
+         <label>原价：</label>
+         <div class="old_price item_text">￥[[${item.oldprice}]]</div>
+         <label>现价：</label>
+         <div class="price item_text">￥[[${item.price}]]</div>
+         <label>折扣幅度：</label>
+         <div class="percent"></div>
+         <label>卖家：</label>
+         <div class="seller">
+           <span class="seller_name">[[${itemUser.reName}]]</span>
+           <span class="seller_level badge badge-success">极好</span>
+         </div>
+         <hr class="d-block d-xl-none">
+         <div class="row btn_box">
+           <div class="col-6">
+             <button id="want" type="button" class="btn btn-warning" data-toggle="modal" data-target="#enter_your_info">
+               我想要<span class="mdi mdi-cash-multiple"></span>
+             </button>
+           </div>
+           <div class="col-6">
+             <button id="collection" type="button" class="btn btn-info">
+               [[${IdFavorite}]]
+               <span class="mdi mdi-folder-star"></span>
+             </button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+  <!-- 交换信息模态框 -->
+  <div class="modal fade" id="enter_your_info" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLongTitle">交换信息</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="remind">说明：如果您想要得到物品发布者的联系方式，您需要先输入您的个人联系方式以便于交换信息</div>
+          <form id="exchange_info">
+            <input type="hidden" name="itemId" th:value="${item.id}"/>
+            <input type="hidden" name="userId" th:value="${session.user.id}"/>
+            <div class="form-group">
+              <label for="your_name" class="col-form-label">您的称呼</label>
+              <input type="text" class="form-control" id="your_name" name="name">
+            </div>
+            <div class="form-group">
+              <label for="contact" class="col-form-label">联系方式</label>
+              <div class="row">
+                <div class="col-4">
+                  <select id="contact_way" class="form-control" name="contactWay">
+                    <option value="1">手机</option>
+                    <option value="2">QQ</option>
+                    <option value="3">微信</option>
+                  </select>
+                </div>
+                <div style="padding-left: 0" class="col-8">
+                  <input type="text" class="form-control" id="contact" name="contactInfo">
+                </div>
+              </div>
+            </div>
+          </form>
+          <div id="your_info_alert" class="alert alert-danger" role="alert">
+            请填写完整的信息
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" id="change_info" class="btn btn-warning">确定交换</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="seller_info" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="seller_info_title">卖家信息</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="seller_name">
+            卖家称呼：<span>[[${item.nick}]]</span>
+          </div>
+          <div id="seller_contact">
+            联系方式：
+            <span>[[${item.contactInfo}]]</span>
+            <span class="badge badge-pill badge-primary">
+              <div th:if="${item.contactWay == 1}">手机</div>
+              <div th:if="${item.contactWay == 2}">QQ</div>
+              <div th:if="${item.contactWay == 3}">微信</div>
+
+            </span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 商品描述 -->
+  <div id="item_description" class="container">
+    <div class="inner">
+      <div class="area_title item_card row">
+        <div class="col-12">
+          商品描述<span class="mdi mdi-message-text"></span>
+        </div>
+      </div>
+
+      <div class="description_text item_card row">
+        <div class="col-12">
+          [[${item.sellPoint}]]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 中心部分：商品图片&留言 -->
+  <div id="center" class="container">
+    <div class="row item_card">
+      <div id="item_pic" class="col-md-7 col-lg-8" th:each="image:${images}" th:if="${images!=null}">
+        <!-- 展示图片 -->
+        <img th:src="${image}" th:if="${image!=null}" alt="">
+        <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(image) || image==null}" alt="">
+        <!--<img src="../Data/SecondHand/Item/1001/1001_1.jpg" alt="">
+        <img src="../Data/SecondHand/Item/1001/1001_2.jpg" alt="">
+        <img src="../Data/SecondHand/Item/1001/1001_3.jpg" alt="">
+        <img src="../Data/SecondHand/Item/1001/1001_4.jpg" alt="">-->
+      </div>
+      <div id="message_board" class="col-md-5 col-lg-4">
+        <div class="inner">
+          <!-- 留言标题 -->
+          <div class="title">
+            留 言 板 <span class="mdi mdi-clipboard-text"></span>
+          </div>
+          <!-- 留言内容 -->
+          <div id="message_box">
+            <div id="message_null">
+              这里还没有留言，快来留言吧！
+            </div>
+            <!-- 留言模板 -->
+            <div class="message row" th:each="message : ${messageList}">
+              <div class="messager_head col-3">
+                <img th:src="${message.user.icon}" th:if="${message.user.icon!=null}" alt="">
+                <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(message.user.icon) || message.user.icon==null}" alt="">
+                <!--<img src="../Data/User/1001/head">-->
+              </div>
+              <div class="messager_info col-9">
+                <div class="msg">
+                  [[${message.msg}]]
+                </div>
+                <div class="messager_name">From：<span>[[${message.user.reName}]]</span></div>
+              </div>
+            </div>
+            <!-- 留言模板 -->
+          </div>
+          <!-- 撰写留言 -->
+          <form id="leave_msg" action="">
+            <textarea name="msg" id="msg_text" cols="45" rows="5" placeholder="请在此留言"></textarea>
+            <input type="hidden" name="name" th:value="${session.user.reName}"/>
+            <input type="hidden" name="itemId" th:value="${item.id}"/>
+            <input type="hidden" name="userId" th:value="${session.user.id}"/>
+            <input type="button" class="btn btn-info" value="发布" id="msg_button">
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 返回顶部按钮 -->
+  <div id="top_btn" href="#">
+    <span class="mdi mdi-format-vertical-align-top"></span>
+  </div>
+
+  <!-- 底部 -->
+  <div id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="img_bg" th:src="@{/Data/SecondHand/System/foot_bg.png}" alt="">
+        </div>
+        <div class="col-md-6">
+          <div class="footer_text">
+            <h1>校园猪 | SchoolPig</h1>
+            <h2>感谢你的加入</h2>
+            <hr>
+            <h3>SchoolPig @ 2018</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

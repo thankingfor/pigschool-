@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pigschool.xyzshow.mapper.XyzNeedMapper" >
+  <resultMap id="BaseResultMap" type="com.pigschool.xyzshow.model.XyzNeed" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="xyz_desc" property="xyzDesc" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="xyz_type" property="xyzType" jdbcType="INTEGER" />
+    <result column="jz_type" property="jzType" jdbcType="INTEGER" />
+    <result column="jz_num" property="jzNum" jdbcType="INTEGER" />
+    <result column="jz_zhusu" property="jzZhusu" jdbcType="INTEGER" />
+    <result column="jz_price_type" property="jzPriceType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, xyz_desc, phone, nick, price, xyz_type, jz_type, jz_num, jz_zhusu, jz_price_type, 
+    status, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pigschool.xyzshow.model.XyzNeedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xyz_need
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from xyz_need
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xyz_need
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pigschool.xyzshow.model.XyzNeedExample" >
+    delete from xyz_need
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pigschool.xyzshow.model.XyzNeed" >
+    insert into xyz_need (id, title, xyz_desc, 
+      phone, nick, price, 
+      xyz_type, jz_type, jz_num, 
+      jz_zhusu, jz_price_type, status, 
+      user_id)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{xyzDesc,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{xyzType,jdbcType=INTEGER}, #{jzType,jdbcType=INTEGER}, #{jzNum,jdbcType=INTEGER}, 
+      #{jzZhusu,jdbcType=INTEGER}, #{jzPriceType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pigschool.xyzshow.model.XyzNeed" >
+    insert into xyz_need
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="xyzDesc != null" >
+        xyz_desc,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="nick != null" >
+        nick,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="xyzType != null" >
+        xyz_type,
+      </if>
+      <if test="jzType != null" >
+        jz_type,
+      </if>
+      <if test="jzNum != null" >
+        jz_num,
+      </if>
+      <if test="jzZhusu != null" >
+        jz_zhusu,
+      </if>
+      <if test="jzPriceType != null" >
+        jz_price_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzDesc != null" >
+        #{xyzDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null" >
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzType != null" >
+        #{xyzType,jdbcType=INTEGER},
+      </if>
+      <if test="jzType != null" >
+        #{jzType,jdbcType=INTEGER},
+      </if>
+      <if test="jzNum != null" >
+        #{jzNum,jdbcType=INTEGER},
+      </if>
+      <if test="jzZhusu != null" >
+        #{jzZhusu,jdbcType=INTEGER},
+      </if>
+      <if test="jzPriceType != null" >
+        #{jzPriceType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pigschool.xyzshow.model.XyzNeedExample" resultType="java.lang.Integer" >
+    select count(*) from xyz_need
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update xyz_need
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyzDesc != null" >
+        xyz_desc = #{record.xyzDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nick != null" >
+        nick = #{record.nick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyzType != null" >
+        xyz_type = #{record.xyzType,jdbcType=INTEGER},
+      </if>
+      <if test="record.jzType != null" >
+        jz_type = #{record.jzType,jdbcType=INTEGER},
+      </if>
+      <if test="record.jzNum != null" >
+        jz_num = #{record.jzNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.jzZhusu != null" >
+        jz_zhusu = #{record.jzZhusu,jdbcType=INTEGER},
+      </if>
+      <if test="record.jzPriceType != null" >
+        jz_price_type = #{record.jzPriceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update xyz_need
+    set id = #{record.id,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      xyz_desc = #{record.xyzDesc,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      nick = #{record.nick,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=VARCHAR},
+      xyz_type = #{record.xyzType,jdbcType=INTEGER},
+      jz_type = #{record.jzType,jdbcType=INTEGER},
+      jz_num = #{record.jzNum,jdbcType=INTEGER},
+      jz_zhusu = #{record.jzZhusu,jdbcType=INTEGER},
+      jz_price_type = #{record.jzPriceType,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pigschool.xyzshow.model.XyzNeed" >
+    update xyz_need
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzDesc != null" >
+        xyz_desc = #{xyzDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null" >
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="xyzType != null" >
+        xyz_type = #{xyzType,jdbcType=INTEGER},
+      </if>
+      <if test="jzType != null" >
+        jz_type = #{jzType,jdbcType=INTEGER},
+      </if>
+      <if test="jzNum != null" >
+        jz_num = #{jzNum,jdbcType=INTEGER},
+      </if>
+      <if test="jzZhusu != null" >
+        jz_zhusu = #{jzZhusu,jdbcType=INTEGER},
+      </if>
+      <if test="jzPriceType != null" >
+        jz_price_type = #{jzPriceType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pigschool.xyzshow.model.XyzNeed" >
+    update xyz_need
+    set title = #{title,jdbcType=VARCHAR},
+      xyz_desc = #{xyzDesc,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      nick = #{nick,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      xyz_type = #{xyzType,jdbcType=INTEGER},
+      jz_type = #{jzType,jdbcType=INTEGER},
+      jz_num = #{jzNum,jdbcType=INTEGER},
+      jz_zhusu = #{jzZhusu,jdbcType=INTEGER},
+      jz_price_type = #{jzPriceType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

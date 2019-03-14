@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pigschool.xyzshow.mapper.XyzExchangeMapper" >
+  <resultMap id="BaseResultMap" type="com.pigschool.xyzshow.model.XyzExchange" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="item_Id" property="itemId" jdbcType="BIGINT" />
+    <result column="user_Id" property="userId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="contact_way" property="contactWay" jdbcType="INTEGER" />
+    <result column="contact_info" property="contactInfo" jdbcType="VARCHAR" />
+    <result column="create" property="create" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, item_Id, user_Id, `name`, contact_way, contact_info, `create`
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pigschool.xyzshow.model.XyzExchangeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from xyz_exchange
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from xyz_exchange
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from xyz_exchange
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pigschool.xyzshow.model.XyzExchangeExample" >
+    delete from xyz_exchange
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pigschool.xyzshow.model.XyzExchange" >
+    insert into xyz_exchange (id, item_Id, user_Id, 
+      `name`, contact_way, contact_info,
+      `create`)
+    values (#{id,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{contactWay,jdbcType=INTEGER}, #{contactInfo,jdbcType=VARCHAR}, 
+      #{create,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pigschool.xyzshow.model.XyzExchange" >
+    insert into xyz_exchange
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="itemId != null" >
+        item_Id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="contactWay != null" >
+        contact_way,
+      </if>
+      <if test="contactInfo != null" >
+        contact_info,
+      </if>
+      <if test="create != null" >
+        `create`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        #{contactWay,jdbcType=INTEGER},
+      </if>
+      <if test="contactInfo != null" >
+        #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="create != null" >
+        #{create,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pigschool.xyzshow.model.XyzExchangeExample" resultType="java.lang.Integer" >
+    select count(*) from xyz_exchange
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update xyz_exchange
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.itemId != null" >
+        item_Id = #{record.itemId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactWay != null" >
+        contact_way = #{record.contactWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactInfo != null" >
+        contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create != null" >
+        `create` = #{record.create,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update xyz_exchange
+    set id = #{record.id,jdbcType=BIGINT},
+      item_Id = #{record.itemId,jdbcType=BIGINT},
+      user_Id = #{record.userId,jdbcType=BIGINT},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      contact_way = #{record.contactWay,jdbcType=INTEGER},
+      contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      create = #{record.create,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pigschool.xyzshow.model.XyzExchange" >
+    update xyz_exchange
+    <set >
+      <if test="itemId != null" >
+        item_Id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        contact_way = #{contactWay,jdbcType=INTEGER},
+      </if>
+      <if test="contactInfo != null" >
+        contact_info = #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="create != null" >
+        `create` = #{create,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pigschool.xyzshow.model.XyzExchange" >
+    update xyz_exchange
+    set item_Id = #{itemId,jdbcType=BIGINT},
+      user_Id = #{userId,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      contact_way = #{contactWay,jdbcType=INTEGER},
+      contact_info = #{contactInfo,jdbcType=VARCHAR},
+      `create` = #{create,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

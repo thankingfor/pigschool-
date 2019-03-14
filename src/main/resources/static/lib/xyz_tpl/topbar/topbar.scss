@@ -1,0 +1,149 @@
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+.nav-shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#topbar {
+  background-image: linear-gradient(120deg, #fac42e 0%, #fec018 100%);
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  .dropdown-toggle{
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .navbar-toggler {
+    margin-top: 5px;
+    .navbar_toggler_title {
+      vertical-align: middle;
+    }
+  }
+
+  .nav-item {
+    .dropdown-toggle .mdi {
+      float: left;
+    }
+    span {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .title {
+    width: 20rem;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .nav_btn{
+    line-height: 40px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    margin-right: 1rem;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+
+  #user_list {
+    margin-right: 1rem;
+    position: relative;
+    height: 40px;
+    padding-top: 5px;
+    #user_name {
+      line-height: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #user_head {
+      width: 30px;
+      margin-left: 15px;
+      cursor: pointer;
+      border-radius: 40px;
+      -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    #user_info {
+      display: none;
+      width: 120px;
+      height: 120px;
+      background-color: white;
+      position: absolute;
+      z-index: 999;
+      right: 0px;
+      top: 40px;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      @media (max-width: 990px) {
+        opacity: 0;
+      }
+      ul {
+        width: 100%;
+        height: 100%;
+        li {
+          cursor: pointer;
+          height: 40px;
+          padding: 8px 10px;
+          font-size: 1rem;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+          justify-content: space-between;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+          .badge {
+            height: 25px;
+            width: 25px;
+            line-height: 19px;
+          }
+          .badge-success {
+            width: 36px !important;
+          }
+          .user_leavel {
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#user_name {
+  .name {
+    margin-right: -10px;
+    position: relative;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .badge-primary {
+    position: absolute;
+    top: 0px;
+    right: -8px;
+  }
+}
+
+#topbar .home_btn {
+  .mdi {
+    font-size: 1.7rem;
+    position: relative;
+    top: 2px;
+  }
+  .navbar_toggler_title {
+    position: relative;
+    top: -4px;
+  }
+}

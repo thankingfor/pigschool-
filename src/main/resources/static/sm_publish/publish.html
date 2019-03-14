@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>发布需求</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib/bootstrap/bootstrap.min.css" />
+  <script type="text/javascript" src="../lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../lib/bootstrap/popper.min.js"></script>
+  <script type="text/javascript" src="../lib/bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../lib/md-fonts/css/materialdesignicons.min.css">
+  <!--私有-->
+  <link rel="stylesheet" type="text/css" href="./publish.css" />
+  <script type="text/javascript" src="./publish.js"></script>
+</head>
+
+<body>
+
+  <!--topbar-->
+  <nav id="top_bar" class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="../sm_index/index.html">
+      <i class="mdi mdi-home"></i> 返回首页
+    </a>
+  </nav>
+
+  <div class="container mt-3">
+
+    <!--标题部分-->
+    <div class="row">
+      <div class="title col-12">填写需求订单</div>
+      <div class="subtitle col-12">填写相关信息，来说明您的需求，您的这些信息将被推送到需求市场。</div>
+    </div>
+
+    <!--滑动门按钮-->
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link text-primary active bg-primary text-light" id="nav-single-tab" data-toggle="tab"
+          href="#nav-single" role="tab" aria-controls="nav-single" aria-selected="true">单人需求</a>
+        <a class="nav-item nav-link text-primary" id="nav-work-tab" data-toggle="tab" href="#nav-work" role="tab"
+          aria-controls="nav-work" aria-selected="false">学生兼职</a>
+        <a class="nav-item nav-link text-primary" id="nav-Multiple-tab" data-toggle="tab" href="#nav-Multiple"
+          role="tab" aria-controls="nav-Multiple" aria-selected="false">众包需求</a>
+
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+
+      <!--单人需求表单-->
+      <div class="tab-pane fade show activeshow active" id="nav-single" role="tabpanel"
+        aria-labelledby="nav-single-tab">
+        <div class="card">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>需求只需要单人或单个团队即可完成</p>
+              <footer class="blockquote-footer"> 如：跑腿任务，代购，租借物品，等</footer>
+            </blockquote>
+          </div>
+        </div>
+
+        <form id="single_form" name="single_form">
+          <div class="form-group">
+            <label>需求标题</label>
+            <input type="text" class="form-control" id="single_title" placeholder="如：需要租借一台相机">
+          </div>
+          <div class="form-group">
+            <label>详细说明</label>
+            <textarea name="single_detail" class="form-control" id="resume" rows="5" placeholder="请填写对需求的详细描述"
+              style="margin-top: 0px; margin-bottom: 0px; height: 75px;"></textarea>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="single_file">
+              <label class="custom-file-label" for="single_file">添加图片辅助说明（非必选）</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>联系电话</label>
+              <input type="text" class="form-control must_num" id="single_phone" placeholder="请输入您的联系电话">
+            </div>
+            <div class="form-group col-md-6">
+              <label>称呼</label>
+              <input type="text" class="form-control" id="single_name" placeholder="请输入您的称呼">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="single_reward" class="col-sm-2 col-form-label">酬金</label>
+            <div class="container">
+              <div class="row">
+                <div class="col-11">
+                  <input type="text" class="form-control must_num" id="single_reward" placeholder="可提供的佣金金额">
+                </div>
+                <div class="col-1 form_back_text">元</div>
+              </div>
+              <div class="col-md-3 custom-control custom-checkbox mr-sm-2 mt-1">
+                <input type="checkbox" class="custom-control-input" id="single_RewardInOtherWay">
+                <label class="custom-control-label text-secondary" for="single_RewardInOtherWay">以其他方式方式答谢</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 fake_submit_box">
+              <button class="btn btn-primary fake_submit" type="button" data-toggle="modal" data-target="#single_modal">
+                提交需求
+              </button>
+            </div>
+          </div>
+          <!--模态框-->
+          <div class="modal fade" id="single_modal" tabindex="-1" role="dialog" aria-labelledby="single_modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-light">确认信息</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                  确认发布的信息无误吗？
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">再看看</button>
+                  <button id="single_submit" type="submit" class="btn btn-primary">确认无误</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!--学生兼职表单-->
+      <div class="tab-pane fade" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab">
+        <div class="card">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>面向学生群体，发布传统的兼职需求</p>
+              <footer class="blockquote-footer"> 如：餐厅服务员，分发传单，超市零时工</footer>
+            </blockquote>
+          </div>
+        </div>
+        <form id="work_form" name="work_form">
+          <div class="form-group">
+            <label>需求标题</label>
+            <input type="text" class="form-control" id="work_title" placeholder="如：招收零时工">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label for="work_type">兼职类型</label>
+              <select class="form-control" id="work_type">
+                <option>零时工</option>
+                <option>短期临时工作</option>
+                <option>寒暑假工</option>
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <label for="work_peopeleNum">招收人数</label>
+              <div class="input-group mb-3">
+                <input type="text" id="work_peopleNum" class="form-control must_num" placeholder=""
+                  aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text">人</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>详细说明</label>
+            <textarea name="resume" class="form-control" id="work_detail" rows="5" placeholder="请填写对兼职工作的详细描述"
+              style="margin-top: 0px; margin-bottom: 0px; height: 75px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="work_file">
+              <label class="custom-file-label" for="wrok_file">添加图片辅助说明（非必选）</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>联系电话</label>
+              <input type="text" class="form-control must_num" id="wrok_phone" placeholder="请输入您的联系电话">
+            </div>
+            <div class="form-group col-md-6">
+              <label>称呼</label>
+              <input type="text" class="form-control" id="work_name" placeholder="请输入您的称呼">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="work_provideMeal">是否提供餐饮或住宿</label>
+              <select class="form-control" id="work_provideMeal">
+                <option>不提供</option>
+                <option>提供餐饮</option>
+                <option>提供住宿</option>
+                <option>提供食宿</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="work_payWay">工资结算方式</label>
+              <select class="form-control" id="work_payWay">
+                <option>按日结算</option>
+                <option>按周结算</option>
+                <option>按月结算</option>
+                <option>按工作时长结算</option>
+                <option>工作完成后结算</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="work_reward">薪资水平</label>
+              <div class="input-group mb-3">
+                <input type="text" id="work_reward" class="form-control must_num" placeholder="可提供的薪资"
+                  aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="work_reward_unit">元 / 天</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 fake_submit_box">
+              <button class="btn btn-primary fake_submit" type="button" data-toggle="modal" data-target="#work_modal">
+                提交需求
+              </button>
+            </div>
+          </div>
+          <!--模态框-->
+          <div class="modal fade" id="work_modal" tabindex="-1" role="dialog" aria-labelledby="work_modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-light">确认信息</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                  确认发布的信息无误吗？
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">再看看</button>
+                  <button id="work_submit" type="submit" class="btn btn-primary">确认无误</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!--众包需求表单-->
+      <div class="tab-pane fade" id="nav-Multiple" role="tabpanel" aria-labelledby="nav-Multiple-tab">
+        <div class="card">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>需求需要多人完成，并且有一定的选拔制度，只有符合要求的提供者才能获取佣金</p>
+              <footer class="blockquote-footer"> 如：众筹创意，众包海报，众包征文</cite></footer>
+            </blockquote>
+          </div>
+        </div>
+        <form id="multiple_form" name="multiple_form">
+          <div class="form-group">
+            <label>需求标题</label>
+            <input type="text" class="form-control" id="single_title" placeholder="如：设计一张商业宣传海报">
+          </div>
+          <div class="form-group">
+            <label>详细说明</label>
+            <textarea name="single_detail" class="form-control" id="resume" rows="5" placeholder="请填写对需求的详细描述"
+              style="margin-top: 0px; margin-bottom: 0px; height: 75px;"></textarea>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="single_file">
+              <label class="custom-file-label" for="single_file">添加图片辅助说明（非必选）</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>联系电话</label>
+              <input type="text" class="form-control" id="single_phone" placeholder="请输入您的联系电话">
+            </div>
+            <div class="form-group col-md-6">
+              <label>称呼</label>
+              <input type="text" class="form-control" id="single_name" placeholder="请输入您的称呼">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 fake_submit_box">
+              <button class="btn btn-primary fake_submit" type="button" data-toggle="modal" data-target="#multiple_modal">
+                提交需求
+              </button>
+            </div>
+          </div>
+          <!--模态框-->
+          <div class="modal fade" id="multiple_modal" tabindex="-1" role="dialog" aria-labelledby="multiple_modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-light">确认信息</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                  确认发布的信息无误吗？
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">再看看</button>
+                  <button id="work_submit" type="submit" class="btn btn-primary">确认无误</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <div id="alert_box" class="alert alert-warning" role="alert">
+    ALERT MESSAGE
+  </div>
+
+</body>
+
+</html>

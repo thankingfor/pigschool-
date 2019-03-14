@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,UAAU,EAAE,IAAI;EAChB,KAAK,EAAe,kBAAO;CAO5B;;AATD,AAGE,KAHG,CAGH,UAAU,CAAC;EACT,aAAa,EAAE,IAAI;CAIpB;;AARH,AAKI,KALC,CAGH,UAAU,CAER,UAAU,CAAC;EACT,UAAU,EAAE,IAAI;CACjB",
+    "sources": [
+        "center.scss"
+    ],
+    "names": [],
+    "file": "center.css"
+}

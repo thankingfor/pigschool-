@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>需求详情</title>
+  <!-- 引入文件 -->
+  <script src="../lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../lib/bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/md-fonts/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../lib/normalize/normalize.css">
+  <!-- xyz组件 -->
+  <link rel="stylesheet" href="../lib/xyz_tpl/topbar/topbar.css">
+  <script src="../lib/xyz_tpl/topbar/topbar.js"></script>
+  <link rel="stylesheet" href="../lib/xyz_tpl/top_btn/top_btn.css">
+  <script src="../lib/xyz_tpl/top_btn/top_btn.js"></script>
+  <!-- 私有 -->
+  <link rel="stylesheet" href="./detail.css">
+  <script src="./detail.js"></script>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <nav id="topbar" class="navbar navbar-expand-lg navbar-light bg-warning nav-shadow">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar_toggler_title">菜单</span>
+    </button>
+    <button class="navbar-toggler home_btn" type="button">
+      <span class="mdi mdi-home"></span>
+      <span class="navbar_toggler_title">主页</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="mdi mdi-near-me d-none d-sm-block"></span>板块导航
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">发布需求</a>
+            <a class="dropdown-item" href="#">供给市场</a>
+            <a class="dropdown-item" href="../Index/index.html">二手市场</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">首 页</a>
+          </div>
+        </li>
+      </ul>
+      <div class="title d-none d-md-block">
+        校园猪&nbsp;|&nbsp;
+        <span class="school_name">SchoolName</span>
+      </div>
+
+      <a class="nav_btn">
+        <span class="mdi mdi-apple-keyboard-caps"></span> 我发布的
+      </a>
+      <a class="nav_btn">
+        <span class="mdi mdi-check-all"></span> 接受的需求
+      </a>
+      <a class="nav_btn">
+        <span class="mdi mdi-folder-star"></span> 收藏
+      </a>
+
+      <div id="user_list">
+        <a id="user_name">
+          <span class="name">UserName</span>
+          <img id="user_head" src=""></img>
+          <span class="badge badge-pill badge-primary">8</span>
+        </a>
+
+        <div id="user_info">
+          <ul>
+            <li class="user_list_btn">
+              <a>用户消息</a>
+              <span id="user_msg" class="badge badge-warning">4</span>
+            </li>
+            <li class="user_list_btn">
+              <a>系统通知</a>
+              <span id="sys_msg" class="badge badge-warning">4</span>
+            </li>
+            <li class="user_list_btn">
+              <a>注销</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- TopBar -->
+
+  <div class="container" id="banner">
+    <img src="./img/banner.png" alt="">
+    <div class="title">需求详情</div>
+  </div>
+
+  <div id="main" class="container">
+    <div class="inner">
+      <div class="big_title">这是一个需求标题</div>
+      <hr>
+      <div class="summary">
+        <div class="title">简 介</div>
+        <p>
+          这是简介hahahahhahah这是简介hahahahhaha这是简介hahahahhaha这是简介hahahahhaha这是简介hahahahhahah这是简介hahahahhaha这是简介hahahahhaha这是简介hahahahhaha这是简介hahahahhahah这是简介hahahahhaha这是简介hahahahhaha这是简介hahahahhaha
+        </p>
+      </div>
+
+      <!-- 需求的基本信息 -->
+      <div class="info_title">
+        信 息
+      </div>
+      <!-- 选择性渲染 -->
+      <div class="info" id="single_info">
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">联系电话</div>
+            <div class="value" id="single_phone">13333333333</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">称 呼</div>
+            <div class="value" id="single_name">李先生</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">酬 金</div>
+            <div class="value" id="single_reward">20元</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="info" id="work_info">
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">兼职类型</div>
+            <div class="value" id="work_type">零时工</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">招收人数</div>
+            <div class="value" id="work_peopleNum">100</div>
+            <spna>人<span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">联系电话</div>
+            <div class="value" id="work_phone">13333333333</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">称 呼</div>
+            <div class="value" id="work_name">李先生</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">是否提供餐饮或住宿</div>
+            <div class="value" id="work_provideMeal">提供餐饮</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">工资结算方式</div>
+            <div class="value" id="work_payWay">按日结算</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">薪资水平</div>
+            <div class="value" id="work_reward">100</div><span id="salary_unity"></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="info" id="multiple_info">
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">联系电话</div>
+            <div class="value" id="multiple_phone">13333333333</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">称 呼</div>
+            <div class="value" id="multiple_name">李先生</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn_box">
+        <button type="button" class="btn btn-outline-primary" id="accept_btn"><i class="mdi mdi-check-all"></i>
+          接受需求</button>
+        <button type="button" class="btn btn-outline-warning" id="collection_btn"> <i class="mdi mdi-folder-star"></i>
+          收藏</button>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+.nav-shadow {
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#topbar {
+  background-image: linear-gradient(120deg, #fac42e 0%, #fec018 100%);
+}
+
+#topbar a {
+  color: black;
+  text-decoration: none;
+}
+
+#topbar .dropdown-toggle {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+#topbar .navbar-toggler {
+  margin-top: 5px;
+}
+
+#topbar .navbar-toggler .navbar_toggler_title {
+  vertical-align: middle;
+}
+
+#topbar .nav-item .dropdown-toggle .mdi {
+  float: left;
+}
+
+#topbar .nav-item span {
+  margin-right: 0.5rem;
+}
+
+#topbar .title {
+  width: 20rem;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  text-align: center;
+}
+
+#topbar .nav_btn {
+  line-height: 40px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+#topbar .nav_btn:hover {
+  font-weight: bold;
+}
+
+#topbar #user_list {
+  margin-right: 1rem;
+  position: relative;
+  height: 40px;
+  padding-top: 5px;
+}
+
+#topbar #user_list #user_name {
+  line-height: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#topbar #user_list #user_head {
+  width: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+  border-radius: 40px;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+#topbar #user_list #user_info {
+  display: none;
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  position: absolute;
+  z-index: 999;
+  right: 0px;
+  top: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 990px) {
+  #topbar #user_list #user_info {
+    opacity: 0;
+  }
+}
+
+#topbar #user_list #user_info ul {
+  width: 100%;
+  height: 100%;
+}
+
+#topbar #user_list #user_info ul li {
+  cursor: pointer;
+  height: 40px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+#topbar #user_list #user_info ul li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#topbar #user_list #user_info ul li .badge {
+  height: 25px;
+  width: 25px;
+  line-height: 19px;
+}
+
+#topbar #user_list #user_info ul li .badge-success {
+  width: 36px !important;
+}
+
+#topbar #user_list #user_info ul li .user_leavel {
+  width: 40px;
+}
+
+#user_name .name {
+  margin-right: -10px;
+  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+#user_name .badge-primary {
+  position: absolute;
+  top: 0px;
+  right: -8px;
+}
+
+#topbar .home_btn .mdi {
+  font-size: 1.7rem;
+  position: relative;
+  top: 2px;
+}
+
+#topbar .home_btn .navbar_toggler_title {
+  position: relative;
+  top: -4px;
+}
+/*# sourceMappingURL=topbar.css.map */

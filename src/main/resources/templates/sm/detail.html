@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>需求详情</title>
+  <!-- 引入文件 -->
+  <script th:src="@{/lib/jquery/jquery-3.2.1.min.js}"></script>
+  <script th:src="@{/lib/bootstrap/bootstrap.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/bootstrap/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/lib/md-fonts/css/materialdesignicons.min.css}">
+  <link rel="stylesheet" th:href="@{/lib/normalize/normalize.css}">
+  <!-- xyz组件 -->
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/topbar/topbar.css}">
+  <script th:src="@{/lib/xyz_tpl/topbar/topbar.js}"></script>
+  <link rel="stylesheet" th:href="@{/lib/xyz_tpl/top_btn/top_btn.css}">
+  <script th:src="@{/lib/xyz_tpl/top_btn/top_btn.js}"></script>
+  <!-- 私有 -->
+  <link rel="stylesheet" th:href="@{/sm_detail/detail.css}">
+  <script th:src="@{/sm_detail/detail.js}"></script>
+  <script th:inline="javascript">
+      var needId = /*[[${need.id}]]*/
+      var userId = /*[[${session.user.id}]]*/
+  </script>
+</head>
+
+<body>
+<!-- Topbar -->
+<nav th:replace="header :: copy"></nav>
+<!-- TopBar -->
+
+  <div class="container" id="banner">
+    <img src="/sm_detail/img/banner.png" alt="">
+    <div class="title">需求详情</div>
+  </div>
+
+  <div id="main" class="container">
+    <div class="inner">
+      <div class="big_title">[[${need.title}]]</div>
+      <hr>
+      <div class="summary">
+        <div class="title">简 介</div>
+        <p>
+          [[${need.xyzDesc}]]
+        </p>
+      </div>
+
+      <!-- 需求的基本信息 -->
+      <div class="info_title">
+        信 息
+      </div>
+      <!-- 选择性渲染 -->
+      <div class="info" id="single_info" th:if="${need.xyzType == 1}">
+        <div class="row" >
+          <div class="info_group col-md-6" >
+            <div class="key">联系电话</div>
+            <div class="value" id="single_phone" >[[${need.phone}]]</div>
+          </div>
+
+          <div class="info_group col-md-6" >
+            <div class="key">称 呼</div>
+            <div class="value" id="single_name" >[[${need.nick}]]</div>
+          </div>
+        </div>
+
+        <div class="row" >
+          <div class="info_group col-md-6" >
+            <div class="key">酬 金</div>
+            <div class="value" id="single_reward">[[${need.price}]]元</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="info" id="work_info" th:if="${need.xyzType == 2}">
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">兼职类型</div>
+            <div class="value" id="work_type">
+              <div th:if="${need.jzType}==1">临时工</div>
+              <div th:if="${need.jzType}==2">短期临时工作</div>
+              <div th:if="${need.jzType}==3">寒假作业</div>
+            </div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">招收人数</div>
+            <div class="value" id="work_peopleNum">[[${need.jzNum}]]</div>
+            <spna>人<span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">联系电话</div>
+            <div class="value" id="work_phone">[[${need.phone}]]</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">称 呼</div>
+            <div class="value" id="work_name">[[${need.nick}]]</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">是否提供餐饮或住宿</div>
+            <div class="value" id="work_provideMeal">
+              <div th:if="${need.jzZhusu}==0">不提供</div>
+              <div th:if="${need.jzZhusu}==1">提供餐饮</div>
+              <div th:if="${need.jzZhusu}==2">提供住宿</div>
+              <div th:if="${need.jzZhusu}==3">提供食宿</div>
+            </div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">工资结算方式</div>
+            <div class="value" id="work_payWay">
+              <div th:if="${need.jzPriceType}==0">按日结算</div>
+              <div th:if="${need.jzPriceType}==1">按周结算</div>
+              <div th:if="${need.jzPriceType}==2">按月结算</div>
+              <div th:if="${need.jzPriceType}==3">工作时长</div>
+              <div th:if="${need.jzPriceType}==4">工作完成后</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">薪资水平</div>
+            <div class="value" id="work_reward">[[${need.price}]]</div><span id="salary_unity"></span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="info" id="multiple_info" th:if="${need.xyzType == 3}">
+        <div class="row">
+          <div class="info_group col-md-6">
+            <div class="key">联系电话</div>
+            <div class="value" id="multiple_phone">[[${need.phone}]]</div>
+          </div>
+
+          <div class="info_group col-md-6">
+            <div class="key">称 呼</div>
+            <div class="value" id="multiple_name">[[${need.nick}]]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn_box">
+        <button type="button" class="btn btn-outline-primary" id="accept_btn"><i class="mdi mdi-check-all"></i>
+          接受需求</button>
+        <button type="button" class="btn btn-outline-warning" id="collection_btn"> <i class="mdi mdi-folder-star"></i>
+          收藏</button>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>

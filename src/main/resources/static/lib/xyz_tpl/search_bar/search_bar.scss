@@ -1,0 +1,109 @@
+$main: #fec018;
+$shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+$border: 1px solid #eaecef;
+// 搜索框
+#search_box {
+  position: relative;
+  height: 10rem;
+  background-image: linear-gradient(120deg, #fac42e 0%, #fec018 100%);
+  margin-bottom: 3rem;
+  #index_title {
+    font-size: 1rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: lighter;
+  }
+  @media (min-width: 1000px) {
+    #index_subtitle {
+      font-size: 2.5rem;
+    }
+  }
+  @media (max-width: 1000px) {
+    #index_subtitle {
+      font-size: 1.5rem;
+      padding-top: 1rem;
+    }
+  }
+  #index_subtitle {
+    // font-size: 2.5rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  #publish {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1.3rem;
+    border-radius: 2rem;
+    line-height: 30px;
+    width: 150px;
+    justify-content: space-between;
+    display: flex;
+    @media (min-width: 1000px) {
+      margin-top: .9rem;
+    }
+    &:hover {
+      a {
+        color: #000000;
+      }
+    }
+    img {
+      width: 30px;
+      border-radius: 30px;
+      border: 1px solid #fff;
+    }
+    a {
+      margin-right: 8px;
+      color: white;
+      text-decoration: none;
+    }
+  }
+  #search {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1.5rem;
+    border-radius: 2rem;
+    box-shadow: $shadow;
+    padding: 0;
+    width: 90%;
+    .input-group {
+      #search_input {
+        border-color: rgba(0, 0, 0, 0.1);
+        height: 3rem;
+        border-radius: 2rem 0 0 2rem;
+        padding-left: 1rem;
+        @media (min-width: 768px) {
+          padding-left: 1.5rem;
+        }
+      }
+      button {
+        border-color: rgba(0, 0, 0, 0.1);
+        background-color: $main;
+        border-radius: 0 2rem 2rem 0;
+      }
+    }
+    #associative_box {
+      display: none;
+      position: absolute;
+      z-index: 999;
+      #associative_list {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 0;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 5px;
+        border: solid rgba(0, 0, 0, 0.2) 1px;
+        overflow: hidden;
+        .associative_item {
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+          list-style: none;
+          line-height: 2.5rem;
+          padding-left: 1rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@-webkit-keyframes slideInUp {
+  from {
+    bottom: -8rem;
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    bottom: -8rem;
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+}
+
+@-webkit-keyframes slideOutDown {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    bottom: -8rem;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    visibility: hidden;
+    bottom: -8rem;
+  }
+}
+
+.slideOutDown {
+  -webkit-animation-name: slideOutDown;
+  animation-name: slideOutDown;
+}
+
+#top_btn {
+  position: absolute;
+  position: fixed;
+  bottom: .8rem;
+  right: .8rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 10rem;
+  font-size: 1.8rem;
+  line-height: 3.5rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  background-color: #fdc223;
+  z-index: 999;
+  display: none;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+@media (min-width: 960px) {
+  #top_btn {
+    width: 4rem;
+    height: 4rem;
+    margin: 2.5rem;
+    line-height: 4rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+}
+/*# sourceMappingURL=top_btn.css.map */

@@ -1,0 +1,309 @@
+$main: #fec018;
+$shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+// background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+$border: 1px solid rgba(0, 0, 0, 0.1);
+$featured: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+
+// 基础配置
+body {
+  background-color: rgba(0, 0, 0, 0.03);
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+}
+
+// 商品信息
+#item_info {
+  margin-top: 1rem;
+  .area_title {
+    .col-12 {
+      background-color: $main;
+      height: 80px;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: $shadow;
+      .title{
+        font-size: 2rem;
+        line-height: 80px;
+        text-align: center;
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  .item_cover {
+    position: relative;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: $shadow;
+    overflow: hidden;
+    @media (max-width: 992px) {
+      margin: 0 16px;
+    }
+    img {
+      width: 100%;
+    }
+    .item_condition_box {
+      width: 0;
+      height: 0;
+      border-bottom: 6rem solid $main;
+      border-right: 6rem solid transparent;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      .item_condition {
+        position: absolute;
+        width: 3rem;
+        text-align: center;
+        line-height: 3rem;
+        font-size: 1.4rem;
+        bottom: -5.6rem;
+        left: 0.4rem;
+        color: white;
+      }
+    }
+  }
+
+  .item_detail {
+    border-radius: 5px;
+    padding-right: 0;
+    @media (max-width: 992px) {
+      padding-right: 16px !important;
+      margin-top: 16px;
+    }
+    .item_detail_inner {
+      position: relative;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: $shadow;
+      padding: 16px;
+      height: 100%;
+    }
+    label {
+      margin-top: 15px;
+      &:first-child {
+        margin-top: 0;
+      }
+      margin-bottom: 0px;
+      font-size: 1rem;
+      font-weight: 100;
+    }
+    .item_name {
+      text-align: justify;
+      font-weight: bold;
+      color: #000000 !important;
+    }
+    .item_text {
+      font-size: 1.3rem;
+      color: rgba(0, 0, 0, 0.8);
+      font-weight: bold;
+    }
+    .old_price {
+      color: rgba(0, 0, 0, 0.3);
+    }
+    .percent {
+      font-size: 1.5rem;
+      background-color: $main;
+      width: 6rem;
+      line-height: 2rem;
+      text-align: center;
+      border-radius: 5px;
+      color: white;
+      border: 5px solid #f8b705;
+      margin: 5px 0;
+    }
+    .seller {
+      span {
+        font-size: 1.3rem;
+        margin-right: 5px;
+        font-weight: bold;
+      }
+      .badge {
+        font-size: 1rem;
+      }
+    }
+    .btn_box {
+      button {
+        width: 100%;
+        height: 50px;
+        .mdi {
+          margin-left: 10px;
+        }
+      }
+    }
+    @media (min-width: 1200px) {
+      .btn_box {
+        position: absolute;
+        bottom: 40px;
+        width: 100%;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 40px;
+      }
+    }
+  }
+}
+
+// “我想要”模态框
+#enter_your_info {
+  .remind {
+    color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 1rem;
+  }
+  #your_info_alert {
+    display: none;
+  }
+}
+#seller_info {
+  #seller_contact {
+    margin-top: 1rem;
+  }
+}
+
+// 弹窗消息
+.alert {
+  position: fixed;
+  z-index: 1000;
+  width: 50%;
+  right: 0;
+  left: 0;
+  bottom: 1rem;
+  margin: auto;
+  text-align: center;
+}
+
+.item_card {
+  @media (max-width: 990px) {
+    padding: 0 16px;
+  }
+}
+
+// 商品描述
+#item_description {
+  cursor: default;
+  .inner {
+    @media (max-width: 990px) {
+      margin: 1rem 0px;
+      padding: 0;
+    }
+    box-shadow: $shadow;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1rem -16px;
+    padding: 0 16px;
+  }
+  .area_title {
+    text-align: center;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    .col-12 {
+      background: $main;
+    }
+    span {
+      margin-left: 10px;
+    }
+  }
+  .description_text {
+    .col-12 {
+      background-color: white;
+      font-size: 1rem;
+      text-indent: 2em;
+      padding: 15px;
+      line-height: 2rem;
+    }
+  }
+}
+
+// 中心部分图片展示信息、留言板
+#center {
+  #item_pic {
+    padding: 0;
+    padding-right: 1rem;
+    @media (max-width: 768px) {
+      padding-right: 0;
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: $shadow;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  #message_board {
+    padding: 0;
+    .inner {
+      background-color: #fff;
+      border: $border;
+      box-shadow: $shadow;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .title {
+        cursor: default;
+        background: $main;
+        line-height: 4rem;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+      #message_box {
+        #message_null {
+          line-height: 5rem;
+          background-color: #fff;
+          color: rgba(0, 0, 0, 0.4);
+          font-size: 1.2rem;
+          font-weight: 100;
+          font-style: italic;
+          text-align: center;
+          display: none;
+        }
+        .message {
+          cursor: default;
+          background-color: #fff;
+          padding: 1rem;
+          border-bottom: $border;
+          .messager_head {
+            width: 200px;
+            padding-right: 0;
+            img {
+              width: 100%;
+              border-radius: 5px;
+              border: $border;
+            }
+          }
+          .messager_info {
+            text-align: justify;
+            color: rgba(0, 0, 0, 0.6);
+            text-indent: 2em;
+            font-size: 1rem;
+            .messager_name {
+              padding-top: 5px;
+              text-align: right !important;
+              padding-right: 0px;
+              color: rgba(0, 0, 0, 0.4);
+            }
+          }
+        }
+      }
+
+      #leave_msg {
+        padding: 1rem;
+        #msg_text {
+          width: 100%;
+          border: $border;
+          border-radius: 10px;
+          padding: 1rem;
+        }
+        input {
+          width: 6rem;
+          float: right;
+          margin: 1rem 0;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}

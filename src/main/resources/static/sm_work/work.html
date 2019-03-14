@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 引入文件 -->
+  <script src="../lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../lib/bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/md-fonts/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../lib/normalize/normalize.css">
+  <!-- xyz组件 -->
+  <link rel="stylesheet" href="../lib/xyz_tpl/topbar/topbar.css">
+  <script src="../lib/xyz_tpl/topbar/topbar.js"></script>
+  <link rel="stylesheet" href="../lib/xyz_tpl/top_btn/top_btn.css">
+  <script src="../lib/xyz_tpl/top_btn/top_btn.js"></script>
+  <!-- 私有 -->
+  <link rel="stylesheet" href="./work.css">
+  <script src="./work.js"></script>
+  <title>学生兼职</title>
+</head>
+
+<body>
+
+  <!-- Topbar -->
+  <nav id="topbar" class="navbar navbar-expand-lg navbar-light bg-warning nav-shadow">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar_toggler_title">菜单</span>
+    </button>
+    <button class="navbar-toggler home_btn" type="button">
+      <span class="mdi mdi-home"></span>
+      <span class="navbar_toggler_title">主页</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="mdi mdi-near-me d-none d-sm-block"></span>板块导航
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">发布需求</a>
+            <a class="dropdown-item" href="#">供给市场</a>
+            <a class="dropdown-item" href="../Index/index.html">二手市场</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">首 页</a>
+          </div>
+        </li>
+      </ul>
+      <div class="title d-none d-md-block">
+        校园猪&nbsp;|&nbsp;
+        <span class="school_name">SchoolName</span>
+      </div>
+
+      <a class="nav_btn">
+        <span class="mdi mdi-apple-keyboard-caps"></span> 我发布的
+      </a>
+      <a class="nav_btn">
+        <span class="mdi mdi-check-all"></span> 接受的需求
+      </a>
+      <a class="nav_btn">
+        <span class="mdi mdi-folder-star"></span> 收藏
+      </a>
+
+      <div id="user_list">
+        <a id="user_name">
+          <span class="name">UserName</span>
+          <img id="user_head" src=""></img>
+          <span class="badge badge-pill badge-primary">8</span>
+        </a>
+
+        <div id="user_info">
+          <ul>
+            <li class="user_list_btn">
+              <a>用户消息</a>
+              <span id="user_msg" class="badge badge-warning">4</span>
+            </li>
+            <li class="user_list_btn">
+              <a>系统通知</a>
+              <span id="sys_msg" class="badge badge-warning">4</span>
+            </li>
+            <li class="user_list_btn">
+              <a>注销</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- TopBar -->
+
+  <div class="container" id="main">
+    <!-- 学生兼职板块 -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-5"><i class="mdi mdi-hail"></i> 学生兼职</h1>
+        <hr>
+        <p class="lead">在下面这个单元分类里，你可以找到关于“学生兼职”的内容。在这里你可以找到可靠的校园兼职相关的信息，丰富你的大学生活。</p>
+        <a href="../sm_index/index.html" role="button" class="btn btn-light">返回首页</a>
+      </div>
+    </div>
+    <!-- 信息浏览（渲染单人需求相关的） -->
+    <div class="row demand">
+      <div class="col-12">
+        <div class="card">
+          <h5 class="card-header">分类：学生兼职</h5>
+          <div class="card-body">
+            <h4 class="card-title">这里是学生兼职标题</h4>
+            <hr>
+            <p class="card-text">这里是学生兼职简介</p>
+            <a href="#" class="btn btn-primary">查看详情</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 信息浏览 -->
+    <!-- 信息浏览（渲染单人需求相关的） -->
+    <div class="row demand">
+      <div class="col-12">
+        <div class="card">
+          <h5 class="card-header">分类：单人需求</h5>
+          <div class="card-body">
+            <h4 class="card-title">这里是单人需求标题</h4>
+            <hr>
+            <p class="card-text">这里是单人需求简介</p>
+            <a href="#" class="btn btn-primary">查看详情</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 信息浏览 -->
+    <!-- 信息浏览（渲染单人需求相关的） -->
+    <div class="row demand">
+      <div class="col-12">
+        <div class="card">
+          <h5 class="card-header">分类：单人需求</h5>
+          <div class="card-body">
+            <h4 class="card-title">这里是单人需求标题</h4>
+            <hr>
+            <p class="card-text">这里是单人需求简介</p>
+            <a href="#" class="btn btn-primary">查看详情</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 信息浏览 -->
+  </div>
+
+  <!-- 分页 -->
+  <nav aria-label="Page navigation" id="page">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</body>
+
+</html>

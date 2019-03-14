@@ -1,0 +1,55 @@
+$shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+$main: #007bff;
+
+body {
+  background-color: #f7f7f7;
+}
+
+#banner {
+  img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: $shadow;
+    margin-top: 30px;
+  }
+}
+
+#main{
+  margin-bottom: 30px;
+  .accepter_card{
+    margin-top: 30px;
+    background-color: #fff;
+    box-shadow: $shadow;
+    border-radius: 10px;
+    padding: 20px;
+    .card_title{
+      font-size: 2rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      line-height: 4rem;
+    }
+    .accepter_item{
+      display: flex;
+      margin-top: 20px;
+      font-size: 1rem;
+      .key{
+        background-color: $main;
+        color: white;
+        border-radius: 5px;
+        margin-right: 10px;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px 10px;
+      }
+      .value{
+        line-height: 34px;
+      }
+    }
+  }
+}
+
+#footer{
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,13 @@
+#main {
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#main .part_card {
+  margin-bottom: 20px;
+}
+
+#main .part_card .item_card {
+  margin-top: 20px;
+}
+/*# sourceMappingURL=center.css.map */

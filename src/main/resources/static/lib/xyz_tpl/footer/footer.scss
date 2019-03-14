@@ -1,0 +1,35 @@
+#footer {
+  background-color: rgba(0, 0, 0, 0.04);
+  margin-top: 1rem;
+  .container {
+    .img_bg {
+      width: 50%;
+      display: block;
+      margin: 1rem auto;
+    }
+    .footer_text {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      height: 60%;
+      width: 90%;
+      h1{
+        margin-top: 2rem;
+      }
+      h1,
+      h2 {
+        font-size: 1.5rem;
+        color: rgba(0, 0, 0, 0.7);
+        font-weight: 100;
+      }
+      h3 {
+        font-size: 1rem;
+        color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

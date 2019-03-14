@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 引入文件 -->
+  <script src="../lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../lib/bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/md-fonts/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../lib/normalize/normalize.css">
+  <!-- xyz组件 -->
+  <link rel="stylesheet" href="../lib/xyz_tpl/topbar/topbar.css">
+  <script src="../lib/xyz_tpl/topbar/topbar.js"></script>
+  <link rel="stylesheet" href="../lib/xyz_tpl/top_btn/top_btn.css">
+  <script src="../lib/xyz_tpl/top_btn/top_btn.js"></script>
+  <link rel="stylesheet" href="../lib/xyz_tpl/search_bar/search_bar.css">
+
+  <!-- 私有 -->
+  <script src="./search.js"></script>
+  <link rel="stylesheet" href="./search.css">
+  <title>搜索结果</title>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <nav id="topbar" class="navbar navbar-expand-lg navbar-light bg-warning nav-shadow">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar_toggler_title">菜单</span>
+    </button>
+    <button class="navbar-toggler home_btn" type="button">
+      <span class="mdi mdi-home"></span>
+      <span class="navbar_toggler_title">主页</span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="mdi mdi-near-me d-none d-sm-block"></span>板块导航
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">发布需求</a>
+            <a class="dropdown-item" href="#">供给市场</a>
+            <a class="dropdown-item" href="../Index/index.html">二手市场</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">首 页</a>
+          </div>
+        </li>
+      </ul>
+      <div class="title d-none d-md-block">
+        校园猪&nbsp;|&nbsp;
+        <span class="school_name">SchoolName</span>
+      </div>
+
+      <a class="nav_btn">
+        <span class="mdi mdi-apple-keyboard-caps"></span> 我发布的
+      </a>
+      <a class="nav_btn">
+        <span class="mdi mdi-check-all"></span> 接受的需求
+      </a>
+      <a class="nav_btn">
+        <span class="mdi mdi-folder-star"></span> 收藏
+      </a>
+
+      <div id="user_list">
+        <a id="user_name">
+          <span class="name">UserName</span>
+          <img id="user_head" src=""></img>
+          <span class="badge badge-pill badge-primary">8</span>
+        </a>
+
+        <div id="user_info">
+          <ul>
+            <li class="user_list_btn">
+              <a>用户消息</a>
+              <span id="user_msg" class="badge badge-warning">4</span>
+            </li>
+            <li class="user_list_btn">
+              <a>系统通知</a>
+              <span id="sys_msg" class="badge badge-warning">4</span>
+            </li>
+            <li class="user_list_btn">
+              <a>注销</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- TopBar -->
+
+  <!-- 搜索框 -->
+  <div id="search_box">
+    <div id="index_subtitle">供给浏览 & 需求发布市场</div>
+    <button id="publish" class="btn btn-outline-light" type="button">
+      <img src="./img/publish.png" alt="">
+      <a href="../sm_publish/publish.html">发布需求</a>
+    </button>
+    <form id="search" class="container" action="">
+      <div class="input-group">
+        <input id="search_input" type="text" class="form-control" placeholder="搜索你想要的东西"
+          aria-label="Search what you want" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button">
+            搜索
+            <span class="mdi mdi-magnify"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="associative_box" class="row col-12 col-sm-6 mt-2">
+        <ul id="associative_list"></ul>
+      </div>
+    </form>
+  </div>
+
+  <div id="main" class="container">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+          aria-controls="pills-home" aria-selected="true">单人需求</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+          aria-controls="pills-profile" aria-selected="false">学生兼职</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+          aria-controls="pills-contact" aria-selected="false">众包</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+
+
+      <!-- 单人需求 -->
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <!-- 信息浏览（渲染单人需求相关的） -->
+        <div class="row demand">
+          <div class="col-12">
+            <div class="card">
+              <h5 class="card-header">分类：单人需求</h5>
+              <div class="card-body">
+                <h4 class="card-title">这里是单人需求标题</h4>
+                <hr>
+                <p class="card-text">这里是单人需求简介</p>
+                <a href="#" class="btn btn-primary">查看详情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 信息浏览 -->
+
+        <div class="footer">- ALL CLEAR 什么都没有了 -</div>
+      </div>
+
+      <!-- 学生兼职 -->
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <!-- 信息浏览（渲染学生兼职相关的） -->
+        <div class="row demand">
+          <div class="col-12">
+            <div class="card">
+              <h5 class="card-header">分类：学生兼职</h5>
+              <div class="card-body">
+                <h4 class="card-title">这里是学生兼职标题</h4>
+                <hr>
+                <p class="card-text">这里是学生兼职简介</p>
+                <a href="#" class="btn btn-primary">查看详情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 信息浏览 -->
+
+        <div class="footer">- ALL CLEAR 什么都没有了 -</div>
+      </div>
+
+
+      <!-- 众包 -->
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <!-- 信息浏览（渲染众包相关的） -->
+        <div class="row demand">
+          <div class="col-12">
+            <div class="card">
+              <h5 class="card-header">分类：众包</h5>
+              <div class="card-body">
+                <h4 class="card-title">这里是众包标题</h4>
+                <hr>
+                <p class="card-text">这里是众包简介</p>
+                <a href="#" class="btn btn-primary">查看详情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 信息浏览 -->
+
+
+        <div class="footer">- ALL CLEAR 什么都没有了 -</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

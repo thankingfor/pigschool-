@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- jquery -->
+  <script src="../lib/jquery/jquery-3.2.1.min.js" type="text/javascript" th:src="@{/lib/jquery/jquery-3.2.1.min.js}"></script>
+  <!-- bootstrap -->
+  <script src="../lib/bootstrap/bootstrap.min.js" th:src="@{/lib/bootstrap/bootstrap.min.js}"></script>
+  <link rel="stylesheet" href="../lib/bootstrap/bootstrap.min.css" th:href="@{/lib/bootstrap/bootstrap.min.css}">
+
+  <!-- md icon -->
+  <link rel="stylesheet" href="../lib/md-fonts/css/materialdesignicons.min.css" th:href="@{/lib/md-fonts/css/materialdesignicons.min.css}">
+  <!-- xyz -->
+  <link rel="stylesheet" href="../lib/xyz_tpl/topbar/topbar.css" th:href="@{/lib/xyz_tpl/topbar/topbar.css}" >
+  <script src="../lib/xyz_tpl/topbar/topbar.js" th:src="@{/lib/xyz_tpl/topbar/topbar.js}"></script>
+  <link rel="stylesheet" href="../lib/xyz_tpl/top_btn/top_btn.css" th:href="@{/lib/xyz_tpl/top_btn/top_btn.css}">
+  <script src="../lib/xyz_tpl/top_btn/top_btn.js" th:src="@{/lib/xyz_tpl/top_btn/top_btn.js}"></script>
+  <link rel="stylesheet" href="../lib/xyz_tpl/footer/footer.css" th:href="@{/lib/xyz_tpl/footer/footer.css}">
+  <!-- self -->
+  <link rel="stylesheet" href="./user.css" th:href="@{/User/user.css}">
+  <script src="./user.js" th:src="@{/User/user.js}"  type="text/javascript"></script>
+  <title>用户信息</title>
+  <script src="./user_gloable.js" th:src="@{/User/user_gloable.js}"></script>
+  <script th:inline="javascript">
+      var itemid = /*[[${session.user.id}]]*/
+  </script>
+</head>
+
+<body>
+<!-- Topbar -->
+<nav th:replace="header :: copy"></nav>
+<!-- TopBar -->
+
+
+  <!-- 模态框组 -->
+  <div class="modal fade" id="ensure_publish_sold" tabindex="-1" role="dialog" aria-labelledby="publish_sold_title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="publish_sold_title">提醒</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          您确定该商品已被卖出吗？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button onclick="publish_sold()" type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ensure_publish_delete" tabindex="-1" role="dialog" aria-labelledby="publish_delete_title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="publish_delete_title">提醒</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          您确定下架该商品吗？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button onclick="publish_delete()" type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ensure_publish_sold" tabindex="-1" role="dialog" aria-labelledby="publish_sold_title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="publish_sold_title">提醒</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          您确定该商品已被卖出吗？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button onclick="publish_sold()" type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ensure_want_delete" tabindex="-1" role="dialog" aria-labelledby="want_delete_title"
+             aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="want_delete_title">提醒</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          您确定删除该商品吗？
+          <input type="hidden" id="want_delete_Hid" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button onclick="want_delete()" type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ensure_fav_delete" tabindex="-1" role="dialog" aria-labelledby="want_delete_title"
+       aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="want_fav_title">提醒</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          您确定删除该商品吗？
+          <input type="hidden" id="want_fav_Hid" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button onclick="fav_want_delete()" type="button" class="btn btn-primary">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="seller_info" tabindex="-1" role="dialog" aria-labelledby="seller_info_title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="seller_info_title">卖家信息</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="seller_name">
+            卖家称呼：<span>SellerName</span>
+          </div>
+          <div id="seller_contact">
+            联系方式：
+            <span>Contact</span>
+            <span class="badge badge-pill badge-primary">ContactWay</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 主要 -->
+  <div id="main_box" class="container">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="info_tab" data-toggle="pill" href="#info" role="tab" aria-controls="info"
+          aria-selected="true">个人信息</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="publish_tab" data-toggle="pill" href="#publish" role="tab" aria-controls="publish"
+          aria-selected="false">我发布的商品</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="want_tab" data-toggle="pill" href="#want" role="tab" aria-controls="want" aria-selected="false">我想要的商品</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="collection_tab" data-toggle="pill" href="#collection" role="tab" aria-controls="collection"
+          aria-selected="false">商品收藏</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+           aria-controls="pills-home" aria-selected="true">我发布的需求</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+           aria-controls="pills-profile" aria-selected="false">接受的需求</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+           aria-controls="pills-contact" aria-selected="false">需求收藏</a>
+      </li>
+      <!--<li class="nav-item">
+        <a class="nav-link" id="userMsg_tab" data-toggle="pill" href="#userMsg" role="tab" aria-controls="userMsg"
+           aria-selected="false">用户消息</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="sysMsg_tab" data-toggle="pill" href="#sysMsg" role="tab" aria-controls="sysMsg"
+           aria-selected="false">系统通知</a>
+      </li>-->
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+
+      <!-- 个人信息 -->
+      <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info_tab">
+        <div class="row">
+          <div id="user_img_name" class="col-md-6">
+            <div class="inner">
+              <img id="user_head_preview" src="../Data/User/1001/head" alt="" srcset="" th:src="${session.user.icon}" th:if="${session.user.icon!=null}">
+              <img id="user_head_preview" src="../Data/User/1001/head" alt="" srcset="" th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(session.user.icon) || session.user.icon==null}">
+              <div id="user_info_name"></div>
+            </div>
+          </div>
+          <div class="col-md-6" id="user_info_box">
+            <form id="userEdit">
+              <fieldset disabled>
+                <div class="row">
+                  <div class="form-group col-6">
+                    <label for="userName">用户名</label>
+                    <input type="text" id="userName" class="form-control" name="username" value="EsunR" th:value="${session.user.username}">
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="realName">真实姓名</label>
+                    <input type="text" id="realName" class="form-control" name="reName" value="蛤蛤" th:value="${session.user.reName}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="qq">昵称</label>
+                  <input type="text" id="qq" class="form-control" name="nickname" value="641411169" th:value="${session.user.nickname}">
+                </div>
+
+                <div class="form-group">
+                  <label for="school">所在学校</label>
+                  <input type="text" id="school" class="form-control" name="reSchool" value="安阳工学院" th:value="${session.user.reSchool}">
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">联系电话</label>
+                  <input type="text" id="phone" class="form-control" name="phone" value="15670023772" th:value="${session.user.phone}">
+                </div>
+
+                <div class="form-group">
+                  <label for="wechat">邮箱</label>
+                  <input type="text" id="wechat" class="form-control" value="esunr641" name="email" th:value="${session.user.email}">
+                </div>
+                <input type="hidden" name="id" th:value="${session.user.id}">
+                <input id="user_icon" type="hidden" name="icon">
+                <div class="file_btn">
+                  <input type="file" id="file" onchange="showPreview(this)" />
+                  <button class="btn btn-success">修改头像</button>
+                </div>
+              </fieldset>
+            </form>
+            <div class="btn_box">
+              <button id="change" class="btn btn-danger">更改信息</button>
+              <button id="submit_change" class="btn btn-" disabled>提交更改</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 我发布的 -->
+      <div class="tab-pane fade" id="publish" role="tabpanel" aria-labelledby="publish_tab">
+        <div class="row">
+
+          <!-- 模板 -->
+          <div class="item_card col-lg-6" item_id="" th:attr="item_id=${item.id}" th:each="item : ${itemList}">
+            <div class="row" >
+              <div class="img_box col-4">
+                <img th:src="${item.photo}" th:if="${item.photo!=null}" alt="">
+                <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(item.photo) || item.photo==null}" alt="">
+                <!--<img class="item_img" src="" test="1111">-->
+              </div>
+              <div class="item_info col-8">
+                <div class="title">
+                  [[${item.title}]]
+                  <!--棒球帽，加绒，原价99，现在只需10元！包邮！包邮！包邮！-->
+                </div>
+                <div class="price_box clearfix">
+                  <div id="oldPrice" class="price_inner">
+                    <span class="title">原价:</span>
+                    ￥<span class="num">[[${item.oldprice}]]</span>
+                  </div>
+                  <div id="price" class="price_inner">
+                    <span class="title">现价:</span>
+                    ￥<span class="num">[[${item.price}]]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn_box clearfix">
+              <div class="publish_sold button badge-secondary" data-toggle="modal" data-target="#ensure_publish_sold">
+                <span class="mdi mdi-cash-usd"></span>
+              </div>
+              <div class="publish_delete button badge-danger">
+                <span class="mdi mdi-delete"></span>
+              </div>
+            </div>
+          </div>
+          <!-- 模板 -->
+
+        </div>
+
+      </div>
+
+      <!-- 我想要的 listExchange-->
+      <div class="tab-pane fade" id="want" role="tabpanel" aria-labelledby="want_tab">
+        <div class="row">
+
+          <!-- 模板 -->
+          <div class="item_card col-lg-6" item_id="" th:attr="item_id=${change.item.id},item_sellerName=${change.item.nick},item_contactWay=${change.item.contactWay},item_contact=${change.item.contactInfo},change_id=${change.id}"  th:each="change : ${listExchange}">
+            <div class="row">
+              <div class="img_box col-4">
+                <img th:src="${change.item.photo}" th:if="${change.item.photo!=null}" alt="">
+                <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(change.item.photo) || change.item.photo==null}" alt="">
+              </div>
+              <div class="item_info col-8">
+                <div class="title">
+                  [[${change.item.title}]]
+                </div>
+                <div class="price_box clearfix">
+                  <div id="oldPrice" class="price_inner">
+                    <span class="title">原价:</span>
+                    ￥<span class="num">[[${change.item.oldprice}]]</span>
+                  </div>
+                  <div id="price" class="price_inner">
+                    <span class="title">现价:</span>
+                    ￥<span class="num">[[${change.item.price}]]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn_box clearfix">
+              <div class="seller_info button badge-primary" data-toggle="modal" data-target="#seller_info">
+                <span class="mdi mdi-account"></span>
+              </div>
+              <div class="want_delete button badge-danger">
+                <span class="mdi mdi-delete"></span>
+              </div>
+            </div>
+          </div>
+          <!-- 模板 -->
+
+        </div>
+      </div>
+
+      <!-- 收藏 -->
+      <div class="tab-pane fade" id="collection" role="tabpanel" aria-labelledby="collection_tab">
+        <div class="row">
+
+          <!-- 模板 -->
+          <div class="item_card col-lg-6" item_id="" th:attr="fav_id=${fav.id},item_id=${fav.item.id}" th:each="fav : ${favoriteList}">
+            <div class="row">
+              <div class="img_box col-4">
+                <img th:src="${fav.item.photo}" th:if="${fav.item.photo!=null}" alt="">
+                <img th:src="@{/lib/default.jpg}" th:if="${#strings.isEmpty(fav.item.photo) || fav.item.photo==null}" alt="">
+              </div>
+              <div class="item_info col-8">
+                <div class="title">
+                  [[${fav.item.title}]]
+                </div>
+                <div class="price_box clearfix">
+                  <div id="oldPrice" class="price_inner">
+                    <span class="title">原价:</span>
+                    ￥<span class="num">[[${fav.item.oldprice}]]</span>
+                  </div>
+                  <div id="price" class="price_inner">
+                    <span class="title">现价:</span>
+                    ￥<span class="num">[[${fav.item.price}]]</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn_box clearfix">
+              <div class="fav_delete button badge-danger">
+                <span class="mdi mdi-delete"></span>
+              </div>
+            </div>
+          </div>
+          <!-- 模板 -->
+        </div>
+      </div>
+
+      <!-- 我发布的 选项卡 -->
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="part_card" >
+            <h3><i class="mdi mdi-nature-people"></i> 单人需求</h3>
+            <div class="card item_card" th:attr="need_id=${need.id}" th:each="need:${NeedList1}">
+              <div class="card-body">
+                <h4 class="card-title">[[${need.title}]]</h4>
+                <hr>
+                <p class="card-text">[[${need.xyzDesc}]]</p>
+                <a href="#"  th:href="@{'/sm/'+${need.id}}" class="btn btn-primary">查看详情</a>
+                <a href="#" th:href="@{'/sm/accepter/'+${need.id}}" class="btn btn-info">查看需求接受者</a>
+                <!--<a href="#" class="btn btn-danger">删除</a>-->
+              </div>
+            </div>
+          </div>
+          <div class="part_card">
+            <h3><i class="mdi mdi-hail"></i> 学生兼职</h3>
+            <div class="card item_card" th:attr="need_id=${need.id}" th:each="need:${NeedList2}">
+              <div class="card-body">
+                <h4 class="card-title">[[${need.title}]]</h4>
+                <hr>
+                <p class="card-text">[[${need.xyzDesc}]]</p>
+                <a href="#" th:href="@{'/sm/'+${need.id}}" class="btn btn-primary">查看详情</a>
+                <a href="#"  th:href="@{'/sm/accepter/'+${need.id}}" class="btn btn-info">查看需求接受者</a>
+                <!--<a href="#" class="btn btn-danger">删除</a>-->
+              </div>
+            </div>
+          </div>
+          <div class="part_card">
+            <h3><i class="mdi mdi-account-group"></i> 众包</h3>
+            <div class="card item_card" th:attr="need_id=${need.id}" th:each="need:${NeedList3}">
+              <div class="card-body">
+                <h4 class="card-title">[[${need.title}]]</h4>
+                <hr>
+                <p class="card-text">[[${need.xyzDesc}]]</p>
+                <a href="#" th:href="@{'/sm/'+${need.id}}" class="btn btn-primary">查看详情</a>
+                <a href="#"  th:href="@{'/sm/accepter/'+${need.id}}" class="btn btn-info">查看需求接受者</a>
+                <!--<a href="#" class="btn btn-danger">删除</a>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- 接受的需求 选项卡 -->
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="part_card" th:if="${needFavList11.size()>0}">
+          <h3><i class="mdi mdi-nature-people"></i> 单人需求</h3>
+          <!-- 单人需求 -->
+          <div class="card item_card" th:attr="need_id=${fav.need.id}" th:each="fav:${needFavList11}">
+            <div class="card-body">
+              <h4 class="card-title">[[${fav.need.title}]]</h4>
+              <hr>
+              <p class="card-text">[[${fav.need.xyzDesc}]]</p>
+              <a href="#" th:href="@{'/sm/'+${fav.need.id}}" class="btn btn-primary">查看详情</a>
+              <a href="#" th:onclick="'javascript:need_click_del('+${fav.id}+')'" class="btn btn-danger">删除</a>
+            </div>
+          </div>
+          <!-- 单人需求 -->
+        </div>
+        <div class="part_card" th:if="${needFavList12.size()>0}">
+          <h3><i class="mdi mdi-hail"></i> 学生兼职</h3>
+          <!-- 学生兼职 -->
+          <div class="card item_card" th:attr="need_id=${fav.need.id}" th:each="fav:${needFavList12}">
+            <div class="card-body">
+              <h4 class="card-title">[[${fav.need.title}]]</h4>
+              <hr>
+              <p class="card-text">[[${fav.need.xyzDesc}]]</p>
+              <a href="#" th:href="@{'/sm/'+${fav.need.id}}" class="btn btn-primary">查看详情</a>
+              <a href="#" th:onclick="'javascript:need_click_del('+${fav.id}+')'" class="btn btn-danger">删除</a>
+            </div>
+          </div>
+          <!-- 学生兼职 -->
+        </div>
+        <div class="part_card" th:if="${needFavList13.size()>0}">
+          <h3><i class="mdi mdi-account-group"></i> 众包</h3>
+          <!-- 众包 -->
+          <div class="card item_card" th:attr="need_id=${fav.need.id}" th:each="fav:${needFavList13}">
+            <div class="card-body">
+              <h4 class="card-title">[[${fav.need.title}]]</h4>
+              <hr>
+              <p class="card-text">[[${fav.need.xyzDesc}]]</p>
+              <a href="#" th:href="@{'/sm/'+${fav.need.id}}" class="btn btn-primary">查看详情</a>
+              <a href="#" th:onclick="'javascript:need_click_del('+${fav.id}+')'" class="btn btn-danger">删除</a>
+            </div>
+          </div>
+          <!-- 众包 -->
+        </div>
+      </div>
+
+
+      <!-- 收藏 选项卡 -->
+      <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="part_card" th:if="${needFavList01.size()>0}">
+          <h3><i class="mdi mdi-nature-people"></i> 单人需求</h3>
+          <!-- 单人需求 -->
+          <div class="card item_card" th:attr="need_id=${fav.need.id}" th:each="fav:${needFavList01}">
+            <div class="card-body">
+              <h4 class="card-title">[[${fav.need.title}]]</h4>
+              <hr>
+              <p class="card-text">[[${fav.need.xyzDesc}]]</p>
+              <a href="#" th:href="@{'/sm/'+${fav.need.id}}" class="btn btn-primary">查看详情</a>
+              <a href="#" th:onclick="'javascript:need_click_del('+${fav.id}+')'" class="btn btn-danger">删除</a>
+            </div>
+          </div>
+          <!-- 单人需求 -->
+        </div>
+        <div class="part_card" th:if="${needFavList02.size()>0}">
+          <h3><i class="mdi mdi-hail"></i> 学生兼职</h3>
+          <!-- 学生兼职 -->
+          <div class="card item_card" th:attr="need_id=${fav.need.id}" th:each="fav:${needFavList02}">
+            <div class="card-body">
+              <h4 class="card-title">[[${fav.need.title}]]</h4>
+              <hr>
+              <p class="card-text">[[${fav.need.xyzDesc}]]</p>
+              <a href="#" th:href="@{'/sm/'+${fav.need.id}}" class="btn btn-primary">查看详情</a>
+              <a href="#" th:onclick="'javascript:need_click_del('+${fav.id}+')'" class="btn btn-danger">删除</a>
+            </div>
+          </div>
+          <!-- 学生兼职 -->
+        </div>
+        <div class="part_card" th:if="${needFavList03.size()>0}">
+          <h3><i class="mdi mdi-account-group"></i> 众包</h3>
+          <!-- 众包 -->
+          <div class="card item_card" th:attr="need_id=${fav.need.id}" th:each="fav:${needFavList03}">
+            <div class="card-body">
+              <h4 class="card-title">[[${fav.need.title}]]</h4>
+              <hr>
+              <p class="card-text">[[${fav.need.xyzDesc}]]</p>
+              <a href="#" th:href="@{'/sm/'+${fav.need.id}}" class="btn btn-primary">查看详情</a>
+              <a href="#" th:onclick="'javascript:need_click_del('+${fav.id}+')'" class="btn btn-danger">删除</a>
+            </div>
+          </div>
+          <!-- 众包 -->
+        </div>
+      </div>
+
+
+      <!-- 用户消息 -->
+      <!--<div class="tab-pane fade" id="userMsg" role="tabpanel" aria-labelledby="userMsg_tab">
+        两周开发时间太短了，这真的开发不完了，理解一下吧 இдஇ
+      </div>-->
+
+      <!-- 系统消息 -->
+      <!--<div class="tab-pane fade" id="sysMsg" role="tabpanel" aria-labelledby="sysMsg_tab">
+        恩没错，这是真的真的开发不完了 இдஇ
+      </div>-->
+    </div>
+  </div>
+
+  <div id="tag">
+    什么都没有了哦 <span class="mdi mdi-playlist-check"></span>
+  </div>
+
+</body>
+
+</html>
