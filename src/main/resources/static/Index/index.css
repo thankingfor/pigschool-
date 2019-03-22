@@ -401,7 +401,7 @@ body ul {
 
 .area_box .item_box .item .price_box .price .now {
   width: 50%;
-  font-size: 1.4rem;
+  font-size: 1rem;
   float: left;
 }
 
@@ -597,7 +597,7 @@ body ul {
     font-size: 1rem !important;
   }
   .item_list .item_innerbox .price_box .price .old {
-    font-size: 0.7rem !important;
+    font-size: 14px !important;
   }
   .item_list .item_innerbox .price_box .price .now {
     font-size: 1rem !important;
